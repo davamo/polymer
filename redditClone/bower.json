@@ -1,0 +1,23 @@
+{
+  "name": "redditClone",
+  "description": "clone reddit polymer",
+  "main": "",
+  "keywords": [
+    "reddit"
+  ],
+  "authors": [
+    "davamo"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "1.9.3"
+  }
+}

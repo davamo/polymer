@@ -1,0 +1,62 @@
+<link rel="import" href="reddit-header.html">
+<link rel="import" href="reddit-item-list.html">
+<link rel="import" href="reddit-clone-dm.html">
+<link rel="import" href="reddit-selected-item.html">
+
+<dom-module id="reddit-clone">
+    <style>
+    </style>    
+    <template class="contenedor">
+       <reddit-header></reddit-header>
+       <reddit-selected-item select-reddit=[[detailreddit]]></reddit-selected-item>
+       Busqueda <input value="{{searchString::input}}">
+       <reddit-item-list id="redditList" reddits=[[filteredReddist]]></reddit-item-list>
+       <reddit-clone-dm id="redditDm"></reddit-clone-dm>
+    </template>
+    <script>
+        Polymer({
+            is: 'reddit-clone',
+            properties:{
+                reddits:{
+                    type: Array,
+                    value: []
+                },
+                filteredReddist:{
+                    type: Array,
+                    value:[], 
+                    computed: '_filterReddist(reddits, searchString)'
+                },
+                detailreddit:{
+                    type: Object,
+                    value: null
+                },
+                searchString:{
+                    type: String,
+                    value: ''
+                }
+            },
+            listeners:{
+                'redditDm.load-datos':'_setData',
+                'redditList.button-pressed':'_setDataDetail'
+            },
+            attached: function(){
+               this.$.redditDm.carga();  
+            },
+            _setDataDetail: function(event){
+                console.log("datos detalle:  ", event.detail);
+                this.detailreddit = event.detail;
+            },            
+            _setData: function(event){
+                console.log("datos finales ", event.detail);
+                this.reddits = event.detail;
+            },
+             _filterReddist: function(reddits, searchString) {
+                searchString = searchString.toLowerCase();
+                var eleAuthor = reddits.filter(function(reddit){
+                    return reddit.author.toLowerCase().indexOf(searchString) !== -1;
+                });
+                return eleAuthor;
+            }
+        });
+    </script>
+</dom-module>

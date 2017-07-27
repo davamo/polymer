@@ -1,0 +1,40 @@
+<link rel="import" href="reddit-clone-dp.html">
+
+<dom-module id="reddit-clone-dm">
+    <style></style>    
+    <template>
+        <reddit-clone-dp id="redditDp"></reddit-clone-dp>
+    </template>
+    <script>
+        Polymer({
+            is: 'reddit-clone-dm',
+            properties:{ 
+
+            },
+            carga:function(){
+                this.$.redditDp.fetch();
+            },
+            listeners:{
+                'redditDp.data-cargada':'_requestSucess'
+            },
+            _requestSucess: function(event){
+                var data = event.detail;
+                console.log("data ", data);
+                var formatData = this._formatData(data.children);
+                this.fire('load-datos', formatData);
+            },
+            _formatData: function(rawData){
+                return rawData.map(function(element) {
+                    var elementData = element.data;
+                    return {
+                        title: elementData.title,
+                        url: elementData.url,
+                        subreddit: elementData.subreddit,
+                        author: elementData.subreddit
+
+                    }
+                });
+            }
+        });
+    </script>
+</dom-module>

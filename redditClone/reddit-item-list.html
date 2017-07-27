@@ -1,0 +1,54 @@
+<dom-module id ="reddit-item-list">
+    <style>
+        .sub-content-list{
+            background-color: dodgerblue;
+        }
+    </style>    
+    <template>
+        <!--<template is="dom-repeat" items="{{reddits}}" as="reddit" filter="{{computeFilter(searchString)}}">-->
+        <template is="dom-repeat" items="{{reddits}}" as="reddit" >
+        <div on-tap="_fireEvent" class="sub-content-list"> 
+            <p>title: [[reddit.title]]</p>
+            <p>author: [[reddit.author]]</p>
+            <p>subreddit : [[reddit.subreddit]]</p>
+            <p>url: [[reddit.url]]</p>
+         <hr/>
+         </div>
+        </template>
+        
+
+    
+    </template>
+    <script>
+        Polymer({
+            is: 'reddit-item-list',
+            properties:{
+                reddits:{
+                    type: Array
+                },
+                searchString:{
+                    type: String,
+                    value:''
+                }
+            },
+            computeFilter: function(string) {
+                if (!string) {
+                    return null;
+                } else {
+                    string = string.toLowerCase();
+                    return function(reddit) {
+                        var first = reddit.title.toLowerCase();
+                        var last = reddit.author.toLowerCase();
+                        return (first.indexOf(string) != -1 ||
+                            last.indexOf(string) != -1);
+                    };
+                }
+            },
+            _fireEvent: function(event) {
+                console.log("event : ", event);
+                var  selectItem = event.model.reddit;
+                this.fire('button-pressed', selectItem);
+            }
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,29 @@
+<dom-module id="reddit-selected-item">
+    <style>
+        .sub-content{
+            background-color: cornflowerblue;
+        }
+    </style>    
+     <template>
+        <template is="dom-if" if="{{selectReddit}}">
+                <div class="sub-content"> 
+                    <p>author: [[selectReddit.author]]</p>
+                    <p> subreddit : [[selectReddit.subreddit]]</p>
+                    <p>title: [[selectReddit.title]]</p>
+                    <p>url: [[selectReddit.url]]</p>
+                    <hr/>
+                </div>
+        </template>
+    </template>
+        
+    <script>
+        Polymer({
+            is: 'reddit-selected-item',
+            properties:{ 
+                selectReddit :{
+                    type : Object 
+                }
+            }
+        });
+    </script>
+</dom-module>
