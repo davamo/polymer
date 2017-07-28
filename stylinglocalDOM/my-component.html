@@ -11,11 +11,13 @@
         font-size: var(--my-component-title-font-size, var(--default-font-size, 18px));
         color: var(--my-component-title-font-color, var(--default-font-color, black));
         background-color: var(--my-component-header-background-color, var(--default-background-color, red));
+         @apply(--my-component-title);
      }
 
       ::content p {
         font-size: var(--my-component-content-font-size, var(--default-font-size, 16px));
         color: var(--my-component-content-font-color, var(--default-font-color, black));
+         @apply(--my-component-content);
       }
 
       ::content h5 {
