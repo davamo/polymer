@@ -1,0 +1,20 @@
+{
+  "name": "behaviors",
+  "homepage": "https://github.com/davamo/polymer",
+  "description": "uso de comportamientos entre componentes",
+  "main": "",
+  "authors": [
+    "davamo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "1.9.3"
+  }
+}

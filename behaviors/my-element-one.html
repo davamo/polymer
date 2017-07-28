@@ -1,0 +1,19 @@
+ <link rel="import" href="behaviors.html">
+
+<dom-module id="my-element-one">
+  <style>
+    :host{
+      background-color: red;
+    }
+  </style>
+  <template>
+    ALOHA COMOPONENTE ONE {{mensaje}}
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-element-one',
+      behaviors: [MyBehaviors.HighlightBehavior]
+    });
+  </script>
+</dom-module>

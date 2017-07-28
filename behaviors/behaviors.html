@@ -1,0 +1,17 @@
+<script>
+    window.MyBehaviors = window.MyBehaviors || {};
+    MyBehaviors.HighlightBehavior = {
+        properties:{
+            mensaje:{
+                    type: String,
+                    value :''    
+             }
+        },
+        listeners: {
+            click: '_evento'
+        },
+        _evento: function()  {
+            console.log("evento clikeado");
+        }
+    }
+</script>

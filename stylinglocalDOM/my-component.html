@@ -1,0 +1,43 @@
+<dom-module id="my-component">
+  <template>
+    <style include="main-my-component-shared-style">
+      ::content h1 {
+        font-size: var(--my-component-header-font-size, var(--default-font-size, 36px));
+        color: var(--my-component-header-font-color, var(--default-font-color, black));
+        background-color: var(--my-component-header-background-color, var(--default-background-color, blue));
+        @apply(--my-component-header);
+      }
+      ::content h3 {
+        font-size: var(--my-component-title-font-size, var(--default-font-size, 18px));
+        color: var(--my-component-title-font-color, var(--default-font-color, black));
+        background-color: var(--my-component-header-background-color, var(--default-background-color, red));
+     }
+
+      ::content p {
+        font-size: var(--my-component-content-font-size, var(--default-font-size, 16px));
+        color: var(--my-component-content-font-color, var(--default-font-color, black));
+      }
+
+      ::content h5 {
+        font-size: var(--my-component-footer-font-size, var(--default-font-size, 12px));
+        color: var(--my-component-footer-font-color, var(--default-font-color, black));
+         @apply(--my-component-footer);
+      }
+    </style>
+
+    <content select="h1"><h1>header</h1></content>
+
+    <content select="h3"><h3>title</h3></content>
+
+    <content select="p"><p>content</p></content>
+
+    <content select="h5"><h5>footer</h5></content>
+    
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-component'
+    });
+  </script>
+</dom-module>

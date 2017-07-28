@@ -1,0 +1,53 @@
+<link rel="import" href="main-my-component-shared-style.html">
+<link rel="import" href="my-component.html">
+<link rel="import" href="my-shared-styles.html">
+
+<dom-module id="main-my-component">
+  <template>
+    <style include="my-shared-styles">
+    </style>
+
+    <my-component>
+      <h1>header Polymer</h1>
+      <h3>title Polymer</h3>
+      <p>content Polymer</p>
+      <h5>footerPolymer </h5>
+    </my-component>
+
+    <my-component id="featured" class="lower-case">
+      <h1>featured header Polymer</h1>
+      <h3>featured title Polymer</h3>
+      <p>featured content Polymer</p>
+      <h5>featured footer Polymer</h5>
+    </my-component>
+
+    <my-component class="upper-case">
+      <h1>upper case header Polymer</h1>
+      <h3>upper case title Polymer</h3>
+      <p>upper case content Polymer</p>
+      <h5>upper case footer Polymer</h5>
+    </my-component>
+
+    <my-component id="doubleline">
+      <h1>dotted header Polymer</h1>
+      <h3>dotted title Polymer</h3>
+      <p>dotted content Polymer</p>
+      <h5>dotted footer Polymer</h5>
+    </my-component>
+
+    <my-component class="upper-case dotted">
+      <h1>dotted header Polymer</h1>
+      <h3>dotted title Polymer</h3>
+      <p>dotted content Polymer</p>
+      <h5>dotted footer Polymer</h5>
+    </my-component>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'main-my-component',
+      properties: {
+      }
+    });
+  </script>
+</dom-module>
