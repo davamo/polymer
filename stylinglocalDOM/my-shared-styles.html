@@ -1,36 +1,19 @@
 <dom-module id="my-shared-styles">
   <template>
     <style>
-      my-component#featured {
-        --my-component-header: {
-          font-size: 44px;
-          color: white;
-          font-weight: bold;
-        }
-      }
-
-       my-component#featured {
-        --my-component-footer: {
-          font-size: 24px;
-          color: white;
-          font-weight: bold;
-          background-color: black;
-        }
-       }
-
-       my-component#backGroundBlack {
+       my-component#fours {
         --my-component-footer: {
           background-color: red;
           color : white;
         }
       }
-       my-component#backGroundBlack {
+       my-component#fours {
          --my-component-content: {
            font-size: 18px; 
           color : green;
         }
       }
-      my-component#backGroundBlack {
+      my-component#fours {
         background: black;
       }
 
@@ -40,12 +23,43 @@
 
       my-component#first {
         background: salmon;
+        --my-component-header: {
+          color: white;
+          text-transform: uppercase;
+        }      
+        --my-component-content: {
+          color: white;
+          background-color: black;
+        }
+        --my-component-footer: {
+          font-style: italic;
+          color: white;
+          background-color: black;
+        }
       }
 
       my-component#second {
         background:  darkorange;
+        --my-component-header: {
+          font-size: 44px;
+          color: white;
+          font-weight: bold;
+        }
+        --my-component-title: {
+          font-size: 36px;
+          color: white;
+          font-weight: bold;
+          background-color: black;
+        }
       }
 
+      my-component#three {
+        background: springgreen;
+      }
+
+      my-component#fives {
+        background: slateblue;
+      }
 
     </style>
   </template>
