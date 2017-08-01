@@ -1,36 +1,37 @@
 <dom-module id="my-component">
   <template>
     <style include="main-my-component-shared-style">
-      ::content h1 {
+      ::slotted(.cabecera) {
         font-size: var(--my-component-header-font-size, var(--default-font-size, 36px));
         color: var(--my-component-header-font-color, var(--default-font-color, black));
         background-color: var(--my-component-header-background-color, var(--default-background-color, blue));
-        @apply(--my-component-header);
+        @apply --my-component-header;
       }
-      ::content h3 {
+      ::slotted(.title)  {
         font-size: var(--my-component-title-font-size, var(--default-font-size, 18px));
         color: var(--my-component-title-font-color, var(--default-font-color, black));
-        background-color: var(--my-component-header-background-color, var(--default-background-color, red));
-         @apply(--my-component-title);
-     }
-      ::content p {
+        background-color: var(--my-component-title-background-color, var(--default-background-color, red));
+        @apply --my-component-title;
+      }
+      ::slotted(.content){
         font-size: var(--my-component-content-font-size, var(--default-font-size, 16px));
         color: var(--my-component-content-font-color, var(--default-font-color, black));
-        background-color: var(--my-component-header-background-color, var(--default-background-color, blue));
-         @apply(--my-component-content);
+        background-color: var(--my-component-content-background-color, var(--default-background-color, blue));
+        @apply --my-component-content;
       }
-      ::content h5 {
+      ::slotted(.footer)  {
         font-size: var(--my-component-footer-font-size, var(--default-font-size, 12px));
-        color: var(--my-component-footer-font-color, var(--default-font-color, black));
-        background-color: var(--my-component-header-background-color, var(--default-background-color, blue));
-         @apply(--my-component-footer);
+        color: var(--my-component-footer-color, var(--default-color, black));
+        background-color: var(--my-component-footer-background-color, var(--default-background-color, blue));
+        @apply --my-component-footer;
       }
     </style>
 
-    <content select="h1"><h1>header</h1></content>
-    <content select="h3"><h3>title</h3></content>
-    <content select="p"><p>content</p></content>
-    <content select="h5"><h5>footer</h5></content>    
+    <slot name="cabecera">header</slot>
+    <slot name="title">title</slot>
+    <slot name="content">content</slot>
+    <slot name="footer">footer</slot>    
+    
   </template>
 
   <script>

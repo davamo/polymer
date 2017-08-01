@@ -5,7 +5,33 @@
 <dom-module id="main-my-component">
   <template>
     <style include="my-shared-styles">
+      my-component {
+        --my-component-header-background-color: green;
+        --my-component-title-background-color: blue;
+        --my-component-content-background-color: red;
+        --my-component-footer-background-color: black;
+        --my-component-footer-color: white;
+
+        --my-component-header: {
+          background-color: pink;
+        }
+
+      }
     </style>
+
+    <my-component>
+      <div slot="cabecera" class="cabecera">header cabecera</div>
+      <div slot="title" class="title">title title</div>
+      <div slot="content" class="content">content content</div>
+      <div slot="footer" class="footer">footer footer</div>    
+    </my-component>
+
+    <my-component>
+      <h1 slot="cabecera" class="cabecera">header Polymer</h1>
+      <h3 slot="title" class="title">title Polymer</h3>
+      <p  slot="content" class="content">content Polymer</p>
+      <h5 slot="footer" class="footer">footerPolymer </h5>
+    </my-component>
 
     <my-component id="first">
       <h1>header Polymer</h1>
@@ -41,7 +67,6 @@
       <p>dotted content Polymer</p>
       <h5>dotted footer Polymer</h5>
     </my-component>
-
   </template>
 
   <script>
