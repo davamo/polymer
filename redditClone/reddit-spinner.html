@@ -2,10 +2,11 @@
   <template>
     <style>
       .spinner {
-          padding: var(--reddit-spinner-padding, var(--default-padding, 10px));
+          position: var(--reddit-spinner-position, var(--default-position, absolute));
+          top: var(--reddit-spinner-top, var(--default-top, 50%));
+          left: var(--reddit-spinner-left, var(--default-left, 50%));
           font-size: var(--reddit-spinner-font-size, var(--default-font-size, 36px));
           color: var(--reddit-spinner-font-color, var(--default-font-color, red));
-          border: var(--reddit-spinner-border, var(--default-border, none));
           display: var(--reddit-spinner-display, var(--default-display, block));
           z-index: var(--reddit-spinner-z-index, var(--default-z-index, 1000));
           @apply --reddit-spinner-spinner;
