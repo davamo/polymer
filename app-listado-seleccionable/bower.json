@@ -1,0 +1,20 @@
+{
+  "name": "app-listado-seleccionable",
+  "homepage": "https://github.com/davamo/polymer",
+  "description": "app implementando iron coiron-collapse",
+  "main": "",
+  "authors": [
+    "davamo"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "iron-collapse": "polymerElements/iron-collapse#1.3.0"
+  }
+}
