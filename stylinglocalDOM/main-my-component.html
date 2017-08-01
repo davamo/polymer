@@ -33,39 +33,32 @@
       <h5 slot="footer" class="footer">footerPolymer </h5>
     </my-component>
 
-    <my-component id="first">
-      <h1>header Polymer</h1>
-      <h3>title Polymer</h3>
-      <p>content Polymer</p>
-      <h5>footerPolymer </h5>
+    <my-component class="lower-case">
+      <h1 slot="cabecera" class="cabecera">second header Polymer</h1>
+      <h3 slot="cabecera" class="cabecera">second title Polymer</h3>
+      <p slot="cabecera" class="cabecera">second content Polymer</p>
+      <h5 slot="cabecera" class="cabecera">second footer Polymer</h5>
     </my-component>
 
-    <my-component id="second" class="lower-case">
-      <h1>second header Polymer</h1>
-      <h3>second title Polymer</h3>
-      <p>second content Polymer</p>
-      <h5>second footer Polymer</h5>
+    <my-component class="upper-case">
+      <h1 slot="title" class="title">upper case header Polymer</h1>
+      <h3 slot="title" class="title">upper case title Polymer</h3>
+      <p slot="title" class="title">upper case content Polymer</p>
+      <h5 slot="title" class="title">upper case footer Polymer</h5>
     </my-component>
 
-    <my-component id="three" class="upper-case">
-      <h1>upper case header Polymer</h1>
-      <h3>upper case title Polymer</h3>
-      <p>upper case content Polymer</p>
-      <h5>upper case footer Polymer</h5>
+    <my-component>
+      <h1 slot="content" class="content">backGroundBlack header Polymer</h1>
+      <h3 slot="content" class="content">backGroundBlack title Polymer</h3>
+      <p slot="content" class="content">backGroundBlack content Polymer</p>
+      <h5 slot="content" class="content">backGroundBlack footer Polymer</h5>
     </my-component>
 
-    <my-component id="fours">
-      <h1>backGroundBlack header Polymer</h1>
-      <h3>backGroundBlack title Polymer</h3>
-      <p>backGroundBlack content Polymer</p>
-      <h5>backGroundBlack footer Polymer</h5>
-    </my-component>
-
-    <my-component id="fives" class="upper-case dotted">
-      <h1>dotted header Polymer</h1>
-      <h3>dotted title Polymer</h3>
-      <p>dotted content Polymer</p>
-      <h5>dotted footer Polymer</h5>
+    <my-component class="upper-case dotted">
+      <h1 slot="footer" class="footer">dotted header Polymer</h1>
+      <h3 slot="footer" class="footer">dotted title Polymer</h3>
+      <p slot="footer" class="footer">dotted content Polymer</p>
+      <h5 slot="footer" class="footer">dotted footer Polymer</h5>
     </my-component>
   </template>
 
