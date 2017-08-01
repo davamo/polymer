@@ -9,7 +9,6 @@
         Polymer({
             is: 'reddit-clone-dm',
             properties:{ 
-
             },
             carga:function(){
                 this.$.redditDp.fetch();
@@ -19,7 +18,6 @@
             },
             _requestSucess: function(event){
                 var data = event.detail;
-                console.log("data ", data);
                 var formatData = this._formatData(data.children);
                 this.fire('load-datos', formatData);
             },

@@ -1,15 +1,24 @@
-<style is="custom-style">
-  reddit-spinner .rainbow {
-    --reddit-spinner-layer-1-color: yellow;
-    --reddit-spinner-layer-2-color: red;
-    --reddit-spinner-layer-3-color: blue;
-    --reddit-spinner-layer-4-color: green;
-  }
+<dom-module id="reddit-spinner">
+  <template>
+    <style>
+      .spinner {
+          padding: var(--reddit-spinner-padding, var(--default-padding, 10px));
+          font-size: var(--reddit-spinner-font-size, var(--default-font-size, 36px));
+          color: var(--reddit-spinner-font-color, var(--default-font-color, red));
+          border: var(--reddit-spinner-border, var(--default-border, none));
+          display: var(--reddit-spinner-display, var(--default-display, block));
+          z-index: var(--reddit-spinner-z-index, var(--default-z-index, 1000));
+          @apply --reddit-spinner-spinner;
+      } 
+    </style>
+    <div class="spinner"> Loading data ....</div> 
+  </template>
+  <script> 
+    Polymer({
+        is: 'reddit-spinner',
+        properties:{
+        }
+    });
+  </script>
 
-  reddit-spinner .red {
-    --reddit-spinner-layer-1-color: red;
-    --reddit-spinner-layer-2-color: red;
-    --reddit-spinner-layer-3-color: red;
-    --reddit-spinner-layer-4-color: red;
-  }
-</style>
+</dom-module>

@@ -1,13 +1,7 @@
-<!--
-mensaje no se han encontrado elemeontos 
-spinner
-
--->
-
 <link rel="import" href="main-my-component-shared-style.html">
 <link rel="import" href="my-shared-styles.html">
 
-
+<link rel="import" href="reddit-spinner.html">
 <link rel="import" href="reddit-header.html">
 <link rel="import" href="reddit-item-list.html">
 <link rel="import" href="reddit-clone-dm.html">
@@ -22,7 +16,7 @@ spinner
                 padding: var(--reddit-clonne-padding, var(--default-padding, 12px 20px));
                 margin: var(--reddit-clonne-margin, var(--default-margin, 8px 0));
                 box-sizing: var(--reddit-clonne-box-sizing, var(--default-box-sizing, border-box));
-                @apply(--input-search);
+                @apply --input-search;
             }
             .button-carga {
                 text-decoration: var(--reddit-clonne-text-decoration, var(--default-text-decoration, none));
@@ -32,23 +26,23 @@ spinner
                 background-color: var(--reddit-clonne-background-color, var(--default-background-color, #1883ba));
                 border-radius: var(--reddit-clonne-border-radius, var(--default-border-radius, 1px));
                 border: var(--reddit-clonne-border, var(--default-border, 2px solid #0016b0));
-                @apply(--button-carga);
+                @apply --button-carga;
             }
             .label {
                 padding: var(--reddit-clone-padding, var(--default-padding, 10px));
                 font-size: var(--reddit-clone-font-size, var(--default-font-size, 30px));
                 color: var(--reddit-clonne-font-color, var(--default-font-color, black));
                 border: var(--reddit-clonne-border, var(--default-border, none));
-                @apply(--reddit-clone-label);
+                @apply --reddit-clone-label;
             }       
             .dataLoad {
                 text-align: var(--reddit-clone-padding, var(--default-padding, right));
                 font-size: var(--reddit-clone-font-size, var(--default-font-size, 16px));
                 color: var(--reddit-clonne-font-color, var(--default-font-color, black));
-                @apply(--reddit-clone-label-dataLoad);
+                @apply --reddit-clone-label-dataLoad;
             }       
         </style>
-
+        <reddit-spinner></reddit-spinner>
         <reddit-header></reddit-header>
         <div class="label"> Busqueda  <input class="input-search" value="{{searchString::input}}">
           <button class="button-carga" id="btoCargarMas">Cargar +</button>
@@ -111,6 +105,8 @@ spinner
             },            
             _setData: function(event){
                 this.push('reddits', ...event.detail);
+                this.customStyle['--reddit-spinner-display'] = 'none';
+                this.updateStyles();
             },
             _filterReddist: function(reddits, searchString) {
                 searchString = searchString.toLowerCase();
