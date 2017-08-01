@@ -1,18 +1,65 @@
+<!--
+mensaje no se han encontrado elemeontos 
+spinner
+
+-->
+
+<link rel="import" href="main-my-component-shared-style.html">
+<link rel="import" href="my-shared-styles.html">
+
+
 <link rel="import" href="reddit-header.html">
 <link rel="import" href="reddit-item-list.html">
 <link rel="import" href="reddit-clone-dm.html">
 <link rel="import" href="reddit-selected-item.html">
 
 <dom-module id="reddit-clone">
-    <style>
-    </style>    
-    <template class="contenedor">
-       <reddit-header></reddit-header>
-       <reddit-selected-item select-reddit=[[detailreddit]]></reddit-selected-item>
-       Busqueda <input value="{{searchString::input}}">
-       <reddit-item-list id="redditList" reddits=[[filteredReddist]]></reddit-item-list>
-       <reddit-clone-dm id="redditDm"></reddit-clone-dm>
+    <template>
+        <style>
+            .input-search {
+                font-size: var(--reddit-clonne-content-font-size, var(--default-font-size, 16px));
+                color: var(--reddit-clonne-font-color, var(--default-font-color, black));
+                padding: var(--reddit-clonne-padding, var(--default-padding, 12px 20px));
+                margin: var(--reddit-clonne-margin, var(--default-margin, 8px 0));
+                box-sizing: var(--reddit-clonne-box-sizing, var(--default-box-sizing, border-box));
+                @apply(--input-search);
+            }
+            .button-carga {
+                text-decoration: var(--reddit-clonne-text-decoration, var(--default-text-decoration, none));
+                padding: var(--reddit-clonne-padding, var(--default-padding, 10px));
+                font-size: var(--reddit-clonne-font-size, var(--default-font-size, 20px));
+                color: var(--reddit-clonne-font-color, var(--default-font-color, white));
+                background-color: var(--reddit-clonne-background-color, var(--default-background-color, #1883ba));
+                border-radius: var(--reddit-clonne-border-radius, var(--default-border-radius, 1px));
+                border: var(--reddit-clonne-border, var(--default-border, 2px solid #0016b0));
+                @apply(--button-carga);
+            }
+            .label {
+                padding: var(--reddit-clone-padding, var(--default-padding, 10px));
+                font-size: var(--reddit-clone-font-size, var(--default-font-size, 30px));
+                color: var(--reddit-clonne-font-color, var(--default-font-color, black));
+                border: var(--reddit-clonne-border, var(--default-border, none));
+                @apply(--reddit-clone-label);
+            }       
+            .dataLoad {
+                text-align: var(--reddit-clone-padding, var(--default-padding, right));
+                font-size: var(--reddit-clone-font-size, var(--default-font-size, 16px));
+                color: var(--reddit-clonne-font-color, var(--default-font-color, black));
+                @apply(--reddit-clone-label-dataLoad);
+            }       
+        </style>
+
+        <reddit-header></reddit-header>
+        <div class="label"> Busqueda  <input class="input-search" value="{{searchString::input}}">
+          <button class="button-carga" id="btoCargarMas">Cargar +</button>
+          <button class="button-carga" on-tap="btoRefrescar">Refrescar Listado</button> 
+          <div class="dataLoad"> Datos : {{filteredReddist.length}}/{{reddits.length}}</div> 
+        </div>
+        <reddit-selected-item select-reddit=[[detailreddit]]></reddit-selected-item>
+        <reddit-item-list class="algo" id="redditList" reddits=[[filteredReddist]]></reddit-item-list>
+        <reddit-clone-dm id="redditDm"></reddit-clone-dm>
     </template>
+
     <script>
         Polymer({
             is: 'reddit-clone',
@@ -24,7 +71,7 @@
                 filteredReddist:{
                     type: Array,
                     value:[], 
-                    computed: '_filterReddist(reddits, searchString)'
+                    computed: '_filterReddist(reddits.*, searchString)'
                 },
                 detailreddit:{
                     type: Object,
@@ -33,26 +80,41 @@
                 searchString:{
                     type: String,
                     value: ''
+                },
+                dataLoaded:{
+                    type: String,
+                    value: ''
+                },
+                dataShow:{
+                    type: String,
+                    value: ''
                 }
             },
+            btoRefrescar: function(){
+                this.reddits=[]; 
+                this.detailreddit=null;
+                this.$.redditDm.carga(); 
+            },            
             listeners:{
                 'redditDm.load-datos':'_setData',
-                'redditList.button-pressed':'_setDataDetail'
+                'redditList.button-pressed':'_setDataDetail',
+                'btoCargarMas.tap':'_addData'
             },
             attached: function(){
-               this.$.redditDm.carga();  
-            },
+               this.$.redditDm.carga();
+            }, 
+            _addData: function(event){
+                this.$.redditDm.carga();
+            },          
             _setDataDetail: function(event){
-                console.log("datos detalle:  ", event.detail);
                 this.detailreddit = event.detail;
             },            
             _setData: function(event){
-                console.log("datos finales ", event.detail);
-                this.reddits = event.detail;
+                this.push('reddits', ...event.detail);
             },
-             _filterReddist: function(reddits, searchString) {
+            _filterReddist: function(reddits, searchString) {
                 searchString = searchString.toLowerCase();
-                var eleAuthor = reddits.filter(function(reddit){
+                var eleAuthor = reddits.base.filter(function(reddit){
                     return reddit.author.toLowerCase().indexOf(searchString) !== -1;
                 });
                 return eleAuthor;

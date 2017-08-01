@@ -1,0 +1,54 @@
+<dom-module id ="reddit-item-detail">
+    <template>
+        <style>
+            p {
+                font-size: var(--reddit-item-list-content-font-size, var(--default-font-size, 10px));
+                color: var(--reddit-item-list-content-font-color, var(--default-font-color, white));
+                @apply --reddit-item-detail-p;
+            }
+            .title {
+                font-size: var(--reddit-item-list-content-font-size, var(--default-font-size, 36px));
+                color: var(--reddit-item-list-content-font-color, var(--default-font-color, white));
+                @apply --reddit-item-detail-title;
+            }
+            div {
+                font-size: var(--reddit-item-list-content-font-size, var(--default-font-size, 36px));
+                color: var(--reddit-item-list-content-font-color, var(--default-font-color, white));
+                background-color: var(--reddit-item-list-header-background-color, var(--default-background-color, black));
+                @apply --reddit-item-detail-div;
+            }
+        </style> 
+
+        <div>
+            <p class="title">title: [[title]]</p>
+            <p>author: [[author]]</p>
+            <p>subreddit : [[subreddit]]</p>
+            <p>url: [[url]]</p>
+            <hr/>
+        </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: 'reddit-item-detail',
+            properties:{
+                title :{
+                    type: String,
+                    value: ''
+                }, 
+                author :{
+                    type: String,
+                    value: ''
+                },
+                subreddit :{
+                    type: String,
+                    value: ''
+                },
+                url :{
+                    type: String,
+                    value: ''
+                }
+            }
+        });
+    </script>
+</dom-module>

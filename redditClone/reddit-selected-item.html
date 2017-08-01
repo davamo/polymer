@@ -1,18 +1,22 @@
 <dom-module id="reddit-selected-item">
     <style>
-        .sub-content{
-            background-color: cornflowerblue;
+        .sub-content {
+                font-size: var(--reddit-item-list-content-font-size, var(--default-font-size, 10px));
+                color: var(--reddit-item-list-content-font-color, var(--default-font-color, white));
+                background-color: var(--reddit-item-list-header-background-color, var(--default-background-color, blue));
+            @apply --reddit-selected-item-sub-content;
         }
     </style>    
      <template>
         <template is="dom-if" if="{{selectReddit}}">
-                <div class="sub-content"> 
-                    <p>author: [[selectReddit.author]]</p>
-                    <p> subreddit : [[selectReddit.subreddit]]</p>
-                    <p>title: [[selectReddit.title]]</p>
-                    <p>url: [[selectReddit.url]]</p>
-                    <hr/>
-                </div>
+            <div class="sub-content"> 
+                <p>title: [[selectReddit.title]]</p>
+                <p>author: [[selectReddit.author]]</p>
+                <p>subreddit : [[selectReddit.subreddit]]</p>
+                <p>url: [[selectReddit.url]]</p>
+                <img src=[[selectReddit.url]] width="70" height="36" alt="">
+                <hr/>
+            </div>
         </template>
     </template>
         
@@ -21,7 +25,8 @@
             is: 'reddit-selected-item',
             properties:{ 
                 selectReddit :{
-                    type : Object 
+                    type : Object,
+                    value: {}
                 }
             }
         });

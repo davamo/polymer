@@ -1,7 +1,14 @@
 <dom-module id="reddit-header">
-    <style></style>    
+    <style>
+        .titulo-principal {
+            font-size: var(--reddit-header-font-size, var(--default-font-size, 70px));
+            color: var(--reddit-header-font-color, var(--default-font-color, black));
+            background-color: var(--reddit-header-background-color, var(--default-background-color, #cee3f8));
+            @apply --reddit-header-titulo-principal;
+        }
+    </style>    
     <template>
-        <h1>Simulador reddit</h1>
+        <div class="titulo-principal">Simulador reddit</div>
     </template>
     <script>
         Polymer({
