@@ -1,0 +1,43 @@
+<link rel="import" href="listado-seleccionable-item.html">
+
+<dom-module id="listado-seleccionado">
+    <template>
+        <style></style>  
+        <template is="dom-repeat" items="{{items}}" as="data">  
+            <div on-tap="_selectItem">   
+            <listado-seleccionable-item   
+                title=[[data.title]]
+                subtitle=[[data.subtitle]]
+                infotitle=[[data.infotitle]]
+                infosubtitle=[[data.infotitle]]
+                indice={{index}}
+                opened$="isItemOpened(index, selectIndex)"> </listado-seleccionable-item>
+            </div>    
+        </template>
+        <template is="dom-if" if=[[!items]]>
+            <div> No item to Show... </div>
+        </template>         
+    </template>
+    <script>
+        Polymer({
+            is: 'listado-seleccionado',
+            properties:{ 
+                 items:{
+                    type: Array,
+                    value: []
+                },
+                buttontext:{
+                    type: String,
+                    value:''    
+                },
+                selectIndex:{
+                    type: Number,
+                    value: null
+                }
+            },
+            _selectItem: function(event){
+                console.log("event.model.index  : " + event.model.index);
+            }
+        });
+    </script>
+</dom-module>

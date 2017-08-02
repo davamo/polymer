@@ -1,0 +1,61 @@
+<link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
+
+<dom-module id="listado-seleccionable-item">
+    <template>
+        <style>
+            .selector {
+                font-size: var(--reddit-selector-font-size, var(--default-font-size, 20px));
+                color: var(--reddit-selector-font-color, var(--default-font-color, green));
+                display: var(--reddit-selector-display, var(--default-display, block));
+                z-index: var(--reddit-selector-z-index, var(--default-z-index, 1000));
+                @apply --reddit-selector-spinner;
+            }
+        </style>  
+        <div on-click="toggle">
+            <div>[[title]]</div>
+            <div>[[subtitle]]</div>
+        </div>
+        <iron-collapse id="collapse" class="selector" opened=[[opened]]>
+            <div on-click="" id=[[indice]]>[[indice]] [[infotitle]]</div>
+            <div on-click="" id=[[indice]]> [[indice]][[infosubtitle]]</div>
+        </iron-collapse>
+    </template>
+    <script>
+        Polymer({
+            is: 'listado-seleccionable-item',
+            properties:{ 
+                indice:{
+                    type: String,
+                    value:''
+                },
+                opened:{
+                    type: String,
+                    value:''
+                },
+                title:{
+                    type: String,
+                    value:''
+                },
+                subtitle:{
+                    type: String,
+                    value:''                
+                },
+                infotitle:{
+                    type: String,
+                    value:''                
+                },
+                infosubtitle:{
+                    type: String,
+                    value:''                
+                }            
+            },
+            toggle: function(i) {
+                this.$.collapse.toggle();
+                console.log(i);
+            },
+            isItemOpened: function(index, selectIndex){
+                console.log("index  : " + index + ', selectIndex : ' + selectIndex);
+            }
+        });
+    </script>
+</dom-module>
