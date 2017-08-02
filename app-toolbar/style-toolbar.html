@@ -1,0 +1,39 @@
+<dom-module id="style-toolbar">
+  <template>
+    <style>
+      :host {
+        --calculated-style-toolbar-height: var(--style-toolbar-height, 64px);
+        --calculated-style-toolbar-sm-height: var(--style-toolbar-sm-height, 56px);
+        display: block;
+        position: relative;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: var(--calculated-style-toolbar-height);
+        background: var(--style-toolbar-background, var(--primary-color));
+        color: var(--style-toolbar-color, var(--dark-theme-text-color));
+        @apply --style-toolbar;
+      }
+      :host(.animate) {
+        transition: var(--style-toolbar-transition, height 0.18s ease-in);
+      }
+      :host(.medium-tall) {
+        height: calc(var(--calculated-style-toolbar-height) * 2);
+        @apply --style-toolbar-medium;
+      }
+      :host(.tall) {
+        height: calc(var(--calculated-style-toolbar-height) * 3);
+        @apply --style-toolbar-tall;
+      }
+      .toolbar-tools {
+        position: relative;
+        height: var(--calculated-style-toolbar-height);
+        padding: 0 16px;
+        pointer-events: none;
+        @apply --layout-horizontal;
+        @apply --layout-center;
+        @apply --style-toolbar-content;
+      }
+      
+    </style>
+  </template>
+</dom-module>

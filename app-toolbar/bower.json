@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "1.9.3"
+    "polymer": "1.9.3",
+    "slate-font-awesome": "^4.7.3"
   }
 }
