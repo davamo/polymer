@@ -1,0 +1,82 @@
+<link rel="import" href="./app-alumno-form-notas.html">
+
+<dom-module id='app-alumno-form'>
+    <template>
+        <style include='slate-font-awesome'></style>
+            <div id='alumno-form' style$='[[background]]'>
+                Nombre<input value='{{nombre::input}}' name='nombre' id='nombre'></input>
+                Apellidos<input value='{{apellido::input}}' name='apellido' id='apellido'></input>
+                Imagen<input value='{{image::input}}' name='image' id='image'></input>
+
+                <button on-tap='_addAlumno'>Grabar</button>
+                <button on-tap='_resetAlumno'>Reset</button>
+                <br>
+                <p>
+                <app-alumno-form-notas></app-alumno-form-notas>
+            </div>
+    </template>
+  <script> 
+    Polymer({
+        is: 'app-alumno-form',
+        properties:{
+            alumno:{
+                type: Array,
+                value: [
+                    {nombre: '', apellido: '', image:''}
+                ]
+            },
+            nombre:{
+                type: String,
+                value: ''
+            },
+            apellido:{
+                type: String,
+                value: ''
+            },
+            media:{
+                type: Number,
+                value: ''
+            },
+            image:{
+                type: String,
+                value:''
+            },
+            notas:{
+                type: Array,
+                value: []
+            }
+        },
+        listeners: {
+            'add_notas':'_addNotas',
+        },
+        _addNotas: function(e){
+            this.notas = e.detail;
+
+        },
+        _addAlumno: function(e){
+            let alumno = {
+                nombre: this.nombre, 
+                apellido: this.apellido,
+                image: this.image,
+                notas: this.notas,
+                promedio: this._calculaPromedio(this.notas)
+            }
+            this.fire('save-alumno-form', alumno);
+            this._resetAlumno();
+        },
+        _resetAlumno: function(){
+            this.$.nombre.value='';
+            this.$.apellido.value='';
+            this.$.image.value='';
+        },
+        _calculaPromedio: function(notas){
+            let total = 0;
+            for(let i=0; i< notas.length; i++){
+                total += parsetInt(notas[i],nota);
+            }
+            total = total/notas.length;
+            return total.toFixed(2);
+        }
+    });
+  </script>
+</dom-module>

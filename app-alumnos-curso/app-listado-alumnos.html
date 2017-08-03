@@ -1,0 +1,25 @@
+<link rel="import" href="./app-listado-alumnos-item.html">
+
+<dom-module id="app-listado-alumnos">
+    <template>
+        <style></style>                           
+         <app-listado-alumnos-item nombre='[[alumnos.nombre]]' 
+                                   apellido='[[alumnos.apellido]]'></app-listado-alumnos-item>
+    </template>
+
+    <script> 
+        Polymer({
+            is: 'app-listado-alumnos',
+            properties:{
+                alumnos:{
+                    type: Array,
+                    value: []
+                },
+                notas:{
+                    type: Array,
+                    value: []
+                }
+            }
+        });
+    </script>
+</dom-module>

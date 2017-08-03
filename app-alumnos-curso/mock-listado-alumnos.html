@@ -1,0 +1,56 @@
+<link rel="import" href="./bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="./bower_components/slate-font-awesome/slate-font-awesome.html">
+<link rel="import" href="./app-listado-alumnos.html">
+<link rel="import" href="./app-alumno-form.html">
+
+<dom-module id="mock-listado-alumnos">
+    <template>
+        <style></style>
+
+        <template is='dom-repeat' items=[[alumnos]] as='alumno' id='listado'  >
+            <app-listado-alumnos    nombre=[[alumno.nombre]]
+                                    apellido=[[alumno.apellido]]
+                                    image=[[alumno.image]]
+                                    notas=[[alumno.notas]]
+                                    opened=[[alumno.apellido]]
+                                    
+            ></app-listado-alumnos>
+        </template>    
+        <template is='dom-if' if='[[!alumnos]]'>
+               <h1> No alumnos show.....</h1> 
+
+        </template>    
+
+        <button on-tap='_newform'>Nuevo</button>
+        <app-alumno-form></app-alumno-form>
+    </template>
+
+    <script> 
+        Polymer({
+            is: 'mock-listado-alumnos',
+            properties:{
+                items:{
+                    type: Array,
+                    value: []
+                },
+                data:{
+                    type: Array,
+                    value: [{nombre:'sss', apellidp:'aaa', image:'xxx'}]
+                },
+                background:{
+                    type: String,
+                    value: 'display:none'
+                }
+            },
+            listeners:{
+                'save-alumno-form': '_save',
+            },
+            _save: function(e){
+                console.log('_addAlumno', e.detail);
+                this.push('alumno', e.detail);
+                console.log('alumno', alumno);
+            }
+
+        });
+    </script>
+</dom-module>

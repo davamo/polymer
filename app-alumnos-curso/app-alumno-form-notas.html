@@ -1,0 +1,36 @@
+<dom-module id="app-alumno-form-notas">
+    <template>
+        <style include="slate-font-awesome"></style>
+
+        <button on-tap='_morenota'>+</button>
+        <template is='dom-repeat' items={{notas}}>
+           <p> 
+            Nota : <input type='number' value$='{{nota::input}}' name='nota'></input>
+           </p>
+        </template>    
+
+    </template>
+
+  <script> 
+    Polymer({
+        is: 'app-alumno-form-notas',
+        properties:{
+            notas:{
+                type: Array,
+                value: function(){
+                    return [
+                        {nota:0}
+                    ];
+                }
+            },
+            nota:{
+                type: String,
+                value: ''
+            },
+        },
+        _morenota: function(){
+            this.push('notas', {nota:0});
+        }
+    });
+  </script>
+</dom-module>
