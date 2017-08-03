@@ -34,7 +34,7 @@
                 var model = e.model;
                 console.log("event.model.index  : " + model.index);
                 this.tools.forEach(function(tool, index) {
-                    tool.clicledItem = '';
+                    tool.clickedClass= '';
                     this.notifyPath('tools.' + index + '.clickedClass' + '');
                 }.bind(this));
                 var auxcliekedClass = '';
