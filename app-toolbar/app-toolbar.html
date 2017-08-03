@@ -3,6 +3,7 @@
 <dom-module id="app-toolbar">
     <template>
         <style></style>
+        <input type="checkbox" name="allowmultipleselectec" value=""> Allow Multiple Selectec : <p>
         <template is="dom-repeat" items="{{tools}}" as="data" > 
             <a on-tap="_selectItem">
                 <toolbar-item text=[[data.text]] 
@@ -23,8 +24,8 @@
                     value: []
                 },
                 allowmultipleselectec:{
-                    type: Array,
-                    value:[]
+                    type: Boolean,
+                    value:false
                 }
             },
             listeners: {
