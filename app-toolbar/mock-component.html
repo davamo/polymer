@@ -1,0 +1,37 @@
+<link rel="import" href="./bower_components/slate-font-awesome/slate-font-awesome.html">
+<link rel="import" href="./app-toolbar.html">
+
+<dom-module id="mock-component">
+    <template>
+        <style include="slate-font-awesome">
+            .cabecera {   
+                display: var(--my-style-cabecera-display, var(--default-display, block));
+                height: var(--my-style-cabecera-height, var(--default-height, 50px));
+                font-family: var(--my-style-cabecera-font-family, var(--default-font-family, proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif));
+                color: var(--my-style-cabecera-color, var(--default-color, white));
+                padding: var(--my-style-cabecera-padding, var(--default-padding, 20px 60px 0px 50px));
+                background-color: var(--my-style-cabecera-background-color, var(--default-background-color, #3f51b5));
+                margin: var(--my-style-cabecera-margin, var(--default-margin, 10px 10px 10px 10px));
+            }
+        </style>
+        <app-toolbar class="cabecera" tools=[[data]]></app-toolbar>  
+    </template>
+    <script> 
+    Polymer({
+        is: 'mock-component',
+        properties:{
+            data:{
+                type: Array,
+                 value: [
+                        {text:'Editar', icon:'fa fa-pencil fa-fw', imageUrl: 'Lorem', imageAlt:'A', clickedClass:''},
+                        {text:'Borrar', icon:'fa fa-trash-o fa-fw', imageUrl: 'Lorem', imageAlt:'A', clickedClass:''},
+                        {text:'Agregar', icon:'fa fa-shopping-cart', imageUrl: 'Lorem', imageAlt:'A', clickedClass:''},
+                        {text:'no', icon:'fa fa-ban fa-fw', imageUrl: 'Lorem', imageAlt:'A', clickedClass:''},
+                        {text:'admin', icon:'fa fa-unlock', imageUrl: 'Lorem', imageAlt:'A', clickedClass:''},
+                        {text:'Seting', icon:'fa fa-cog', imageUrl: 'Lorem', imageAlt:'A', clickedClass:''}
+                ]
+            }
+        }
+    });    
+    </script>
+</dom-module>

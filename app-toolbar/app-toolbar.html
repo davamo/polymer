@@ -1,40 +1,54 @@
 <link rel="import" href="./toolbar-item.html">
-<!--link rel="import" href="./style-toolbar.html"-->
-<link rel="import" href="./bower_components/slate-font-awesome/slate-font-awesome.html">
 
 <dom-module id="app-toolbar">
-  <template>
     <template>
-        <style include="slate-font-awesome"></style>
-        <i class="fa fa-camera-retro lg"></i> fa-lg <br>
-        <i class="fa fa-camera-retro fa-2x"></i> fa-2x <br>
-        <i class="fa fa-camera-retro fa-3x"></i> fa-3x <br>
-        <i class="fa fa-fighter-jet fa-spin fa-3x fa-fw"></i> Top Gun Style :) <br>
-        <span class="fa-stack fa-lg">
-        <i class="fa fa-camera fa-stack-1x"></i>
-        <i class="fa fa-ban fa-stack-2x" style="color: red;"></i>
-        </span> fa-ban on fa-camera
+        <style></style>
+        <template is="dom-repeat" items="{{tools}}" as="data" > 
+            <a on-tap="_selectItem">
+                <toolbar-item text=[[data.text]] 
+                                icon=[[data.icon]] 
+                                image-url=[[data.imageUrl]] 
+                                image-alt=[[data.imageAlt]] 
+                                clicked=[[_clickleado(data.clickedClass)]]></toolbar-item>
+            </a>                    
+        </template>
     </template>
 
-    <toolbar-item> 
-
-
-    </toolbar-item>
-
-  </template>
-  <script> 
-    Polymer({
-        is: 'app-toolbar',
-        properties:{
-            tools:{
-                type: Array,
-                value: []
+    <script> 
+        Polymer({
+            is: 'app-toolbar',
+            properties:{
+                tools:{
+                    type: Array,
+                    value: []
+                },
+                allowmultipleselectec:{
+                    type: Array,
+                    value:[]
+                }
             },
-            allowmultipleselectec:{
-                type: Array,
-                value:[]
+            listeners: {
+                'toolbar-item-clicked': '_fireclick',
+            },
+            _selectItem: function(e){
+                var model = e.model;
+                console.log("event.model.index  : " + model.index);
+                this.tools.forEach(function(tool, index) {
+                    tool.clicledItem = '';
+                    this.notifyPath('tools.' + index + '.clickedClass' + '');
+                }.bind(this));
+                var auxcliekedClass = '';
+                model.set('model.data.clickedClass', ('clickedClass' == 'inverse') ? 'clicledItem' : '')
+                console.log("model.data.text  : " + model.data.text);
+                this.fire('toolbar-item-clicked', model.data.text)
+            },
+            _clickleado: function(clickedClass){
+                return (clickedClass == 'clicledItem') ? 'clicledItem': '';
+            },
+            _fireclick: function(data){
+                console.log('item clikeado : ' + data.detail)
             }
-        }
-    });
-  </script>
+
+        });
+    </script>
 </dom-module>

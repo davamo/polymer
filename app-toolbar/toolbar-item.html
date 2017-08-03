@@ -1,8 +1,43 @@
 <dom-module id="toolbar-item">
-  <template>
-    <style>
-    </style>
-  </template>
+    <template>
+        <style include="slate-font-awesome">
+            .btn-primary {
+                color: var(--my-style-btn-primary -color, var(--default-color, white));
+                background-color: var(--my-style-btn-primary-background-color, var(--default-background-color, none));
+                border-color: var(--my-style-btn-primary-border-color, var(--default-border-color, #2e6da4));
+            }
+            .btn {
+                margin-bottom: var(--my-style-btn-margin-bottom, var(--default-margin-bottom, 0));
+                font-weight: var(--my-style-btn-font-weigh, var(--default-font-weigh, normal));
+                text-align: var(--my-style-btn-text-align, var(--default-font-weigh, center));
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                background-image: none;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                border-radius: 4px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            a {
+                text-decoration: var(--my-style-a-text-decoration, var(--default-text-decoration, none));
+            }
+            .inverse {
+                background-color: var(--my-style-inverse-background-color, var(--default-background-color, salmon));
+            }
+            </style>
+
+            <a class$="btn btn-primary [[inverse]]" href$="#[[imageUrl]]" aria-label$=[[imageAlt]]>
+                    <i class$=[[icon]] aria-hidden="true"></i>
+                <i>[[text]]</i>
+            </a>   
+    </template>
   <script> 
     Polymer({
         is: 'toolbar-item',
@@ -15,13 +50,17 @@
                 type: String,
                 value: ''
             },
-            imageurl:{
+            imageUrl:{
                 type: String,
                 value: ''
             },
-            imageadd:{
+            imageAlt:{
                 type: String,
                 value: ''
+            },
+            clickedClass:{
+                tyoe: String,
+                value:''
             }
         }
     });
