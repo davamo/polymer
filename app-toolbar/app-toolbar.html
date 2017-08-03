@@ -9,7 +9,7 @@
                                 icon=[[data.icon]] 
                                 image-url=[[data.imageUrl]] 
                                 image-alt=[[data.imageAlt]] 
-                                clicked=[[_clickleado(data.clickedClass)]]></toolbar-item>
+                                clicked$=[[_clickleado(data.clickedClass)]]></toolbar-item>
             </a>                    
         </template>
     </template>
@@ -38,12 +38,13 @@
                     this.notifyPath('tools.' + index + '.clickedClass' + '');
                 }.bind(this));
                 var auxcliekedClass = '';
-                model.set('model.data.clickedClass', ('clickedClass' == 'inverse') ? 'clicledItem' : '')
-                console.log("model.data.text  : " + model.data.text);
+                //model.set('model.data.clickedClass', ('clickedClass' == 'inverse') ? 'clicledItem' : '')
+                model.set('data.clickedClass', model.data.clickedClass='inverse')
+                console.log("data.clickedClass  : " ,model.data.clickedClass);
                 this.fire('toolbar-item-clicked', model.data.text)
             },
             _clickleado: function(clickedClass){
-                return (clickedClass == 'clicledItem') ? 'clicledItem': '';
+                return (clickedClass == 'inverse') ? 'clicledItem': '';
             },
             _fireclick: function(data){
                 console.log('item clikeado : ' + data.detail)
