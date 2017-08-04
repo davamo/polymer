@@ -1,8 +1,7 @@
 <dom-module id="app-alumno-form-notas">
     <template>
-        <style include="slate-font-awesome"></style>
-
-        <button on-tap='_morenota'>+</button>
+        <style include='my-style'></style>
+        <button class="btn btn-primary" on-tap='_morenota'>+</button>
         <template is='dom-repeat' items={{notas}}>
            <p> 
             Nota : <input type='number' value$='{{nota::input}}' name='nota'></input>
@@ -31,6 +30,7 @@
         _morenota: function(){
             this.push('notas', {nota:0});
         }
+
     });
   </script>
 </dom-module>

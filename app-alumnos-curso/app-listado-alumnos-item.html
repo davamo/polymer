@@ -1,41 +1,17 @@
+<link rel="import" href="./my-style.html">
+
 <dom-module id="app-listado-alumnos-item">
     <template>
-        <style include="slate-font-awesome">
-            .btn-primary {
-                color: var(--app-listado-alumnos-item-btn-primary-color, var(--default-color, white));
-                background-color: var(--my-style-btn-primary-background-color, var(--default-background-color, none));
-                border-color: var(--my-style-btn-primary-border-color, var(--default-border-color, #2e6da4));
-            }
-            .btn {
-                margin-bottom: var(--my-style-btn-margin-bottom, var(--default-margin-bottom, 0));
-                font-weight: var(--my-style-btn-font-weigh, var(--default-font-weigh, normal));
-                text-align: var(--my-style-btn-text-align, var(--default-font-weigh, center));
-                vertical-align: middle;
-                touch-action: manipulation;
-                cursor: pointer;
-                background-image: none;
-                border: 1px solid transparent;
-                white-space: nowrap;
-                padding: 6px 12px;
-                font-size: 14px;
-                line-height: 1.42857143;
-                border-radius: 4px;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-            a {
-                text-decoration: var(--my-style-a-text-decoration, var(--default-text-decoration, none));
-            }
-            .clicked-item {
-                background-color: var(--my-style-inverse-background-color, var(--default-background-color, salmon));
-            }
-            </style>
+        <style include="my-style">
 
-            <i>[[nombre]]</i>
-            <i>[[apellido]]</i>
-            <i>[[image]]</i>
+        </style>
+            <p>
+                <i><img src$="[[image]]"></i>
+                <i>[[nombre]]</i>
+                <i>[[apellido]]</i>
+                <i><button class="btn btn-primary" on-tap='_editAlumno'>Editar</button>
+                <i><button class="btn btn-primary" on-tap='_delAlumno'>X</button>
+            </p>
 
     </template>
   <script> 
@@ -57,8 +33,20 @@
             image:{
                 type: String,
                 value:''
+            },
+            id: {
+                type: Number,
+                value: 0
             }
+        },
+        _editAlumno: function(){
+            this.fire('edit-alumno', { id: this.id });
+            console.log('_editAlumno');
+        },
+        _delAlumno: function(){
+            this.fire('del-alumno', { id: this.id });
+            console.log('_delAlumno');
         }
-    });
+});
   </script>
 </dom-module>

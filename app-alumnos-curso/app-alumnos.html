@@ -1,0 +1,67 @@
+<link rel="import" href="./app-listado-alumnos.html">
+<link rel="import" href="./app-alumno-form.html">
+<link rel="import" href="./my-style.html">
+
+<dom-module id="app-alumnos">
+    <template>
+        <style include='my-style'></style>
+        <app-listado-alumnos alumnos=[[alumnos]]></app-listado-alumnos>
+        <button class="btn btn-primary" on-tap='_newAlumno'>Nuevo</button>
+        <app-alumno-form alumno='[[alumno]]'></app-alumno-form>
+    </template>
+
+    <script> 
+        Polymer({
+            is: 'app-alumnos',
+            properties:{
+                alumnos:{
+                    type: Array,
+                    value: []
+                },
+                alumno:{
+                    type: Object,
+                    value: null
+                }
+            },
+            listeners:{
+                'save-alumno-form': '_save',
+                'edit-alumno': '_edit',
+                'del-alumno': '_del',
+            },
+            _save: function(e){
+                var alumnoToProcess = e.detail.alumno;
+                if (!alumnoToProcess.id){
+                    alumnoToProcess.id= Math.random(0, 100) + 1;
+                    this.push('alumnos', alumnoToProcess);
+                } else {
+                    this.alumnos.forEach(function(alumno, index) {
+                        if (alumno.id == alumnoToProcess.id) {
+                            alumno.nombre = alumnoToProcess.nombre;
+                            alumno.apellido = alumnoToProcess.apellido;
+                            alumno.image = alumnoToProcess.image;
+                            this.notifyPath('alumnos.' + index + '.nombre', alumnoToProcess.nombre);
+                            this.notifyPath('alumnos.' + index + '.apellido',alumnoToProcess.apellido);
+                            this.notifyPath('alumnos.' + index + '.image', alumnoToProcess.image);
+                        }
+                    }.bind(this));
+                }
+                this.alumno=null;
+            },
+            _newAlumno: function(){
+                this.alumno={};
+            },
+            _edit: function(e){
+                var idAlumno = e.detail.id;
+                var alumno=this.alumnos.find(function(alumno){
+                    return alumno.id==idAlumno; 
+                })
+                this.alumno=alumno; 
+            },
+            _del: function(e){
+                var idAlumno = e.detail.id;
+                let ind = this.alumnos.findIndex(alumno => idAlumno==alumno.id);
+                this.splice('alumnos', ind, 1);
+            }
+        });
+    </script>
+</dom-module>

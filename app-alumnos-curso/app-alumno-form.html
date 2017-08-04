@@ -1,49 +1,29 @@
 <link rel="import" href="./app-alumno-form-notas.html">
+<link rel="import" href="./my-style.html">
 
 <dom-module id='app-alumno-form'>
     <template>
-        <style include='slate-font-awesome'></style>
-            <div id='alumno-form' style$='[[background]]'>
-                Nombre<input value='{{nombre::input}}' name='nombre' id='nombre'></input>
-                Apellidos<input value='{{apellido::input}}' name='apellido' id='apellido'></input>
-                Imagen<input value='{{image::input}}' name='image' id='image'></input>
-
-                <button on-tap='_addAlumno'>Grabar</button>
-                <button on-tap='_resetAlumno'>Reset</button>
+        <style include='my-style'></style>
+        <template is='dom-if' if=[[alumno]]>
+            <div id='alumno-form'>
+                <p> Nombre : <input value='{{alumno.nombre::input}}' name='nombre' id='nombre'></input></p>
+                <p> Apellidos : <input value='{{alumno.apellido::input}}' name='apellido' id='apellido'></input></p> 
+                <p> Imagen : <input value='{{alumno.image::input}}' name='image' id='image'></input></p>
+                <p><button class="btn btn-primary" on-tap='_addAlumno'>Grabar</button>
+                <button class="btn btn-primary" on-tap='_resetAlumno'>Reset</button></p>
                 <br>
                 <p>
                 <app-alumno-form-notas></app-alumno-form-notas>
             </div>
+        </template>        
     </template>
   <script> 
     Polymer({
         is: 'app-alumno-form',
         properties:{
-            alumno:{
-                type: Array,
-                value: [
-                    {nombre: '', apellido: '', image:''}
-                ]
-            },
-            nombre:{
-                type: String,
-                value: ''
-            },
-            apellido:{
-                type: String,
-                value: ''
-            },
-            media:{
-                type: Number,
-                value: ''
-            },
-            image:{
-                type: String,
-                value:''
-            },
-            notas:{
-                type: Array,
-                value: []
+            alumno: {
+                type: Object,
+                value: null
             }
         },
         listeners: {
@@ -51,28 +31,17 @@
         },
         _addNotas: function(e){
             this.notas = e.detail;
-
         },
-        _addAlumno: function(e){
-            let alumno = {
-                nombre: this.nombre, 
-                apellido: this.apellido,
-                image: this.image,
-                notas: this.notas,
-                promedio: this._calculaPromedio(this.notas)
-            }
-            this.fire('save-alumno-form', alumno);
-            this._resetAlumno();
+        _addAlumno: function(){
+            this.fire('save-alumno-form', { alumno: this.alumno });
         },
         _resetAlumno: function(){
-            this.$.nombre.value='';
-            this.$.apellido.value='';
-            this.$.image.value='';
+            this.alumno=null;
         },
         _calculaPromedio: function(notas){
-            let total = 0;
-            for(let i=0; i< notas.length; i++){
-                total += parsetInt(notas[i],nota);
+            var total = 0;
+            for(i=0; i < notas.length; i++){
+                total += parsetInt(notas[i], nota);
             }
             total = total/notas.length;
             return total.toFixed(2);

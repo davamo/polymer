@@ -1,0 +1,41 @@
+<dom-module id="my-style">
+    <template>
+        <style>
+            .btn-primary {
+                color: var(--my-style-btn-primary-color, var(--default-color, white));
+                background-color: var(--my-style-btn-primary-background-color, var(--default-background-color, #2e6da4));
+                border-color: var(--my-style-btn-primary-border-color, var(--default-border-color, #2e6da4));
+            }
+            .btn {
+                margin-bottom: var(--my-style-btn-margin-bottom, var(--default-margin-bottom, 0));
+                font-weight: var(--my-style-btn-font-weigh, var(--default-font-weigh, normal));
+                text-align: var(--my-style-btn-text-align, var(--default-font-weigh, center));
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                background-image: none;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                border-radius: 4px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            img {
+                height: var(--my-style-height, var(--default-height, 100px));
+            }
+        </style>
+    </template>
+    <script> 
+        Polymer({
+            is: 'my-style',
+            properties:{
+
+            }
+        });
+    </script>
+</dom-module>

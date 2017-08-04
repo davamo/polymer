@@ -2,9 +2,16 @@
 
 <dom-module id="app-listado-alumnos">
     <template>
-        <style></style>                           
-         <app-listado-alumnos-item nombre='[[alumnos.nombre]]' 
-                                   apellido='[[alumnos.apellido]]'></app-listado-alumnos-item>
+        <style></style>    
+        <template is='dom-repeat' items=[[alumnos]] as='alumno' id='listado'>
+            <app-listado-alumnos-item id='[[alumno.id]]' nombre='[[alumno.nombre]]' 
+                                      apellido='[[alumno.apellido]]'
+                                      image='[[alumno.image]]'></app-listado-alumnos-item>
+   
+        </template>    
+        <template is='dom-if' if='[[!alumnos]]'>
+               <h1> No alumnos show.....</h1> 
+        </template>    
     </template>
 
     <script> 
