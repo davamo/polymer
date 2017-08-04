@@ -1,0 +1,58 @@
+<dom-module id="productos-style">
+    <template>
+        <style>
+            .titulo-principal {
+                font-size: var(--productos-header-font-size, var(--default-font-size, 70px));
+                color: var(--productos-header-font-color, var(--default-font-color, black));
+                background-color: var(--productos-background-color, var(--default-background-color, #cee3f8));
+            }
+            .btn-primary {
+                color: var(--productos-btn-primary-color, var(--default-color, white));
+                background-color: var(--productos-btn-primary-background-color, var(--default-background-color, #2e6da4));
+                border-color: var(--productos-btn-primary-border-color, var(--default-border-color, #2e6da4));
+            }
+            .btn {
+                margin-bottom: var(--productos-btn-margin-bottom, var(--default-margin-bottom, 0));
+                font-weight: var(--productos-btn-font-weigh, var(--default-font-weigh, normal));
+                text-align: var(--productos-btn-text-align, var(--default-font-weigh, center));
+                vertical-align: middle;
+                touch-action: manipulation;
+                cursor: pointer;
+                background-image: none;
+                border: 1px solid transparent;
+                white-space: nowrap;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.42857143;
+                border-radius: 4px;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            img {
+                height: var(--productos-height, var(--default-height, 100px));
+            }
+            .cabecera {   
+                display: var(--productos-style-cabecera-display, var(--default-display, block));
+                height: var(--productos-style-cabecera-height, var(--default-height, 100%));
+                font-family: var(--productos-style-cabecera-font-family, var(--default-font-family, proxima-nova,"Helvetica Neue",Helvetica,Arial,sans-serif));
+                color: var(--productos-style-cabecera-color, var(--default-color, white));
+                padding: var(--productos-style-cabecera-padding, var(--default-padding, 20px 60px 0px 50px));
+                background-color: var(--productos-style-cabecera-background-color, var(--default-background-color, #3f51b5));
+                margin: var(--productos-style-cabecera-margin, var(--default-margin, 10px 10px 10px 10px));
+            }
+            .clear {
+                clear: both;
+            }
+        </style>
+    </template>
+    <script> 
+        Polymer({
+            is: 'productos-style',
+            properties:{
+
+            }
+        });
+    </script>
+</dom-module>

@@ -1,0 +1,53 @@
+<link rel="import" href="./productos-style.html">
+
+<dom-module id="listado-productos-item">
+    <template>
+        <style include="productos-style"></style>
+            <p>
+                <i>[[id]]</i>
+                <i>[[nombre]]</i>
+                <i>[[tallas]]</i>
+                <i>[[stock]]</i>
+                <i>[[ventas]]</i>
+                <i><button class="btn btn-primary" on-tap='_editProducto'>Editar</button>
+                <i><button class="btn btn-primary" on-tap='_delProducto'>X</button>
+            </p>
+    </template>
+  <script> 
+    Polymer({
+        is: 'listado-productos-item',
+        properties:{
+            id: {
+                type: Number,
+                value: 0
+            },
+            nombre:{
+                type: String,
+                value: ''
+            },
+            tallas:{
+                type: Number,
+                value: 0
+            },
+            stock:{
+                type: Number,
+                value: 0
+            },
+            ventas:{
+                type: Number,
+                value: ''
+            },
+            image:{
+                type: String,
+                value:''
+            }
+        },
+        _editProducto: function(){
+            this.fire('edit-producto', { id: this.id });
+        },
+        _delProducto: function(){
+            this.fire('delete-producto', { id: this.id });
+        }
+});
+  </script>
+</dom-module>

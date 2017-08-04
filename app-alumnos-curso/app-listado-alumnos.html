@@ -6,11 +6,12 @@
         <template is='dom-repeat' items=[[alumnos]] as='alumno' id='listado'>
             <app-listado-alumnos-item id='[[alumno.id]]' nombre='[[alumno.nombre]]' 
                                       apellido='[[alumno.apellido]]'
-                                      image='[[alumno.image]]'></app-listado-alumnos-item>
+                                      image='[[alumno.image]]'
+                                      notas='[[alumno.notas]]'></app-listado-alumnos-item>
    
         </template>    
         <template is='dom-if' if='[[!alumnos]]'>
-               <h1> No alumnos show.....</h1> 
+               <h1> No existen alumnos para listar.....</h1> 
         </template>    
     </template>
 

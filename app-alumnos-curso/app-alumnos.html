@@ -6,7 +6,7 @@
     <template>
         <style include='my-style'></style>
         <app-listado-alumnos alumnos=[[alumnos]]></app-listado-alumnos>
-        <button class="btn btn-primary" on-tap='_newAlumno'>Nuevo</button>
+        <button class="btn btn-primary" on-tap='_newAlumno'> +  Alumno</button>
         <app-alumno-form alumno='[[alumno]]'></app-alumno-form>
     </template>
 
@@ -24,11 +24,11 @@
                 }
             },
             listeners:{
-                'save-alumno-form': '_save',
-                'edit-alumno': '_edit',
-                'del-alumno': '_del',
+                'save-alumno-form': '_saveAlumno',
+                'edit-alumno': '_editAlumno',
+                'del-alumno': '_delAlumno',
             },
-            _save: function(e){
+            _saveAlumno: function(e){
                 var alumnoToProcess = e.detail.alumno;
                 if (!alumnoToProcess.id){
                     alumnoToProcess.id= Math.random(0, 100) + 1;
@@ -50,14 +50,14 @@
             _newAlumno: function(){
                 this.alumno={};
             },
-            _edit: function(e){
+            _editAlumno: function(e){
                 var idAlumno = e.detail.id;
                 var alumno=this.alumnos.find(function(alumno){
                     return alumno.id==idAlumno; 
                 })
                 this.alumno=alumno; 
             },
-            _del: function(e){
+            _delAlumno: function(e){
                 var idAlumno = e.detail.id;
                 let ind = this.alumnos.findIndex(alumno => idAlumno==alumno.id);
                 this.splice('alumnos', ind, 1);

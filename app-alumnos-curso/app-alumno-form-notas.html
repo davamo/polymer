@@ -1,13 +1,17 @@
 <dom-module id="app-alumno-form-notas">
     <template>
-        <style include='my-style'></style>
-        <button class="btn btn-primary" on-tap='_morenota'>+</button>
-        <template is='dom-repeat' items={{notas}}>
+        <style include='my-style'>
+            .clear {
+                clear: both;
+            }
+        </style>
+        <template is='dom-repeat' items='{{notas}}' as='nota'>
            <p> 
-            Nota : <input type='number' value$='{{nota::input}}' name='nota'></input>
+            Nota : <input type='number' value='{{nota.value::input}}' id='nota' name='nota' min='0' max='10' step='0.1' class$='[[_computedValue(nota.Value)]]'></input>
            </p>
         </template>    
-
+        <button class="btn btn-primary" on-tap='_addNewNota'>+</button>
+        <div class='clear'></div>
     </template>
 
   <script> 
@@ -16,21 +20,23 @@
         properties:{
             notas:{
                 type: Array,
-                value: function(){
-                    return [
-                        {nota:0}
-                    ];
-                }
+                value: []
             },
             nota:{
                 type: String,
                 value: ''
             },
         },
-        _morenota: function(){
-            this.push('notas', {nota:0});
+        _addNewNota: function(){
+            this.push('notas', {});
+        },
+        _computedValue(notaValue){
+            return notaValue == null ? 'emtty value' : this.isValidNota(notaValue) ? 'value' : 'invalid value';
+        },
+        isValidNota(notaValue){
+            let notaNumber = Number(notaValue);
+            return typeof notaNumber == 'number' && !number.isNaN(notaNumber) && notanumber <= 10 && notaNUmber >= 0;
         }
-
     });
   </script>
 </dom-module>

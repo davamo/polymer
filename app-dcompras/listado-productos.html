@@ -1,0 +1,31 @@
+<link rel="import" href="./listado-productos-item.html">
+<link rel="import" href="./productos-style.html">
+
+<dom-module id="listado-productos">
+    <template>
+        <style include='productos-style'></style>
+        <template is='dom-repeat' items=[[productos]] as='producto' id='listado'>
+            <listado-productos-item id='[[producto.id]]' 
+                                    nombre='[[producto.nombre]]' 
+                                    tallas='[[alumno.tallas]]'
+                                    stock='[[alumno.stock]]'
+                                    ventas='[[alumno.ventas]]'
+                                    ></listado-productos-item>
+        </template>    
+        <template is='dom-if' if='[[!productos]]'>
+               <h1> No existen productos para listar.....</h1> 
+        </template>    
+    </template>
+
+    <script> 
+        Polymer({
+            is: 'listado-productos',
+            properties:{
+                productos:{
+                    type: Array,
+                    value: []
+                }
+            }
+        });
+    </script>
+</dom-module>

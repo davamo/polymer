@@ -1,0 +1,75 @@
+<link rel="import" href="./listado-productos.html">
+<link rel="import" href="./form-productos.html">
+<link rel="import" href="./productos-style.html">
+
+<dom-module id="gestion-productos">
+    <template>
+        <style include='productos-style'>
+                --productos-header-font-size {
+                    font-size:36px
+                }   
+            
+        </style>
+         <spam class="titulo-principal">Tienda dcompras</spam>   
+        <listado-productos productos=[[productos]]></listado-productos>
+        <button class="btn btn-primary" on-tap='_newProducto'> +  Producto</button>
+        <form-productos producto='[[producto]]'></form-productos>
+    </template>
+    <script> 
+        Polymer({
+            is: 'gestion-productos',
+            properties:{
+                productos:{
+                    type: Array,
+                    value: []
+                },
+                producto:{
+                    type: Object,
+                    value: null
+                }
+            },
+            listeners:{
+                'save-producto-form': '_saveProducto',
+                'edit-producto': '_editProducto',
+                'delete-producto': '_deleteProducto',
+                'cancel-producto-form' : '_saveProducto',
+            },
+            _saveProducto: function(e){
+                var productoToProcess = e.detail.producto;
+                if (!productoToProcess.id){
+                    productoToProcess.id= Math.random(0, 100) + 1;
+                    this.push('productos', productoToProcess);
+                } else {
+                    this.productos.forEach(function(producto, index) {
+                        if (producto.id == productoToProcess.id) {
+                            producto.nombre = productoToProcess.nombre;
+                            producto.tallas = productoToProcess.tallas;
+                            producto.stock = productoToProcess.stock;
+                            producto.ventas = productoToProcess.ventas;
+                            this.notifyPath('productos.' + index + '.nombre', productoToProcess.nombre);
+                            this.notifyPath('productos.' + index + '.tallas',productoToProcess.tallas);
+                            this.notifyPath('productos.' + index + '.stock', productoToProcess.stock);
+                            this.notifyPath('productos.' + index + '.ventas', productoToProcess.ventas);
+                        }
+                    }.bind(this));
+                }
+                this.producto=null;
+            },
+            _newProducto: function(){
+                this.producto={};
+            },
+            _editProducto: function(e){
+                var idproducto = e.detail.id;
+                var producto=this.productos.find(function(producto){
+                    return producto.id==idproducto; 
+                })
+                this.producto=producto; 
+            },
+            _deleteProducto: function(e){
+                var idproducto = e.detail.id;
+                let ind = this.productos.findIndex(producto => idproducto==producto.id);
+                this.splice('productos', ind, 1);
+            }
+        });
+    </script> 
+</dom-module>
