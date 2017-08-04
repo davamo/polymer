@@ -1,19 +1,19 @@
 <link rel="import" href="./listado-productos.html">
+<link rel="import" href="./listado-productos-stock.html">
 <link rel="import" href="./form-productos.html">
+<link rel="import" href="./productos-dm.html">
 <link rel="import" href="./productos-style.html">
 
 <dom-module id="gestion-productos">
     <template>
-        <style include='productos-style'>
-                --productos-header-font-size {
-                    font-size:36px
-                }   
-            
-        </style>
-         <spam class="titulo-principal">Tienda dcompras</spam>   
+        <style include='productos-style'></style>
+         <div class="header">  
+            <spam>Tienda dcompras </spam> 
+            <button class="btn btn-primary" on-tap='_newProducto'> +  Producto</button>
+         </div>
         <listado-productos productos=[[productos]]></listado-productos>
-        <button class="btn btn-primary" on-tap='_newProducto'> +  Producto</button>
         <form-productos producto='[[producto]]'></form-productos>
+        <listado-productos-stock stocks=[[productos]]></listado-productos-stock>
     </template>
     <script> 
         Polymer({
@@ -32,7 +32,7 @@
                 'save-producto-form': '_saveProducto',
                 'edit-producto': '_editProducto',
                 'delete-producto': '_deleteProducto',
-                'cancel-producto-form' : '_saveProducto',
+                'cancel-producto-form' : '_cancelProducto',
             },
             _saveProducto: function(e){
                 var productoToProcess = e.detail.producto;
@@ -69,6 +69,8 @@
                 var idproducto = e.detail.id;
                 let ind = this.productos.findIndex(producto => idproducto==producto.id);
                 this.splice('productos', ind, 1);
+            },
+            _cancelProducto: function(){
             }
         });
     </script> 

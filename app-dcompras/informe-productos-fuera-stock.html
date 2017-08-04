@@ -1,0 +1,64 @@
+<link rel="import" href="./productos-style.html">
+
+<dom-module id="informe-productos-fuera-stock">
+    <template>
+        <style include="productos-style"></style>
+        <template is='dom-if' if='[[resta]]'>
+            <p class="table">
+                <i class="item-producto">[[id]]</i>
+                <i class="item-producto">[[nombre]]</i>
+                <i class="item-producto">Tallas : [[tallas]]</i>
+                <i class="item-producto">nª vendidos : [[ventas]]</i>
+                <i class="item-producto">total $  : [[total]]</i>
+                <i class="item-producto">--------Sin Existencia/Stock-------</i>
+            </p>
+        </template>
+    </template>
+    <script> 
+        Polymer({
+            is: 'informe-productos-fuera-stock',
+            properties:{
+               id: {
+                type: Number,
+                value: 0
+                },
+                nombre:{
+                    type: String,
+                    value: ''
+                },
+                precio:{
+                    type: Number,
+                    value: 0
+                },
+                tallas:{
+                    type: String,
+                    value: ''
+                },
+                stock:{
+                    type: Number,
+                    value: 0
+                },
+                ventas:{
+                    type: Number,
+                    value: 0
+                },
+                resta:{
+                    type: Number,
+                    value: 0,
+                    computed: '_calculateStock(stock, ventas)'
+                },
+                total:{
+                    type: Number,
+                    value: 0,
+                    computed: '_calculaTotal(precio, ventas)'
+                }
+            },
+            _calculaTotal: function(precio, ventas) {
+                return precio*ventas;
+            },
+            _calculateStock: function(stock, ventas) {
+                return (stock-ventas)==0;
+            }
+        });
+    </script> 
+</dom-module>

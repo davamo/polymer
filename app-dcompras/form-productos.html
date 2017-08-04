@@ -5,11 +5,11 @@
         </style>
         <template is='dom-if' if=[[producto]]>
             <div class='cabecera'>
-                <p> Nombre : <input value='{{producto.nombre::input}}' name='nombre' id='nombre'></input></p>
-                <p> Precio : <input value='{{producto.precio::input}}' name='precio' id='precio'></input></p> 
-                <p> Tallas : <input value='{{producto.tallas::input}}' name='tallas' id='tallas'></input></p>
-                <p> Stock  : <input value='{{producto.stock::input}}' type='number' name='stock' id='stock' min='0'></input></p>
-                <p> Ventas : <input value='{{producto.ventas::input}}' type='number' name='ventas' id='ventas' min='0'></input></p>
+                <p> <spam class='label'>Nombre : </spam> <input value='{{producto.nombre::input}}' name='nombre' id='nombre'></input></p>
+                <p> <spam class='label'>Precio : </spam> <input value='{{producto.precio::input}}' type='number' name='precio' id='precio' min='0'></input></p> 
+                <p> <spam class='label'>Tallas : </spam> <input value='{{producto.tallas::input}}' name='tallas' id='tallas'></input></p>
+                <p> <spam class='label'>Stock  : </spam> <input value='{{producto.stock::input}}' type='number' name='stock' id='stock' min='0'></input></p>
+                <p> <spam class='label'>Ventas : </spam> <input value='{{producto.ventas::input}}' type='number' name='ventas' id='ventas' min='0'></input></p>
                 <p><button class="btn btn-primary" on-tap='_saveProducto'>Grabar</button>
                    <button class="btn btn-primary" on-tap='_cancelproducto'>Cancelar</button></p>
                 <br>

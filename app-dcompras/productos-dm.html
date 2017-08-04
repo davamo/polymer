@@ -1,0 +1,38 @@
+
+<link rel="import" href="productos-dp.html">
+
+<dom-module id="productos-dm">
+    <style></style>    
+    <template>
+        <reddit-clone-dp id="redditDp"></reddit-clone-dp>
+    </template>
+    <script>
+        Polymer({
+            is: 'productos-dm',
+            properties:{ 
+            },
+            carga:function(){
+                this.$.redditDp.fetch();
+            },
+            listeners:{
+                'productos.data-cargada':'_requestSucess'
+            },
+            _requestSucess: function(event){
+                var data = event.detail;
+                var formatData = this._formatData(data.children);
+                this.fire('load-datos', formatData);
+            },
+            _formatData: function(rawData){
+                return rawData.map(function(element) {
+                    var elementData = element.data;
+                    return {
+                        id: elementData.id,
+                        nombre: elementData.nombre,
+                        ventas: elementData.ventas,
+                        stock: elementData.stock,
+                    }
+                });
+            }
+        });
+    </script>
+</dom-module>

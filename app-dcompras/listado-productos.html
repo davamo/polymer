@@ -1,20 +1,20 @@
 <link rel="import" href="./listado-productos-item.html">
+<link rel="import" href="./informe-productos-fuera-stock.html">
 <link rel="import" href="./productos-style.html">
 
 <dom-module id="listado-productos">
     <template>
         <style include='productos-style'></style>
-        <template is='dom-repeat' items=[[productos]] as='producto' id='listado'>
+        <template is='dom-repeat' items="[[productos]]" as='producto' id='listado'>
             <listado-productos-item id='[[producto.id]]' 
                                     nombre='[[producto.nombre]]' 
-                                    tallas='[[alumno.tallas]]'
-                                    stock='[[alumno.stock]]'
-                                    ventas='[[alumno.ventas]]'
-                                    ></listado-productos-item>
+                                    tallas='[[producto.tallas]]'
+                                    stock='[[producto.stock]]'
+                                    ventas='[[producto.ventas]]'></listado-productos-item>
         </template>    
-        <template is='dom-if' if='[[!productos]]'>
+        <template is="dom-if" if="[[!visibleProductos]]">
                <h1> No existen productos para listar.....</h1> 
-        </template>    
+        </template>  
     </template>
 
     <script> 
@@ -24,7 +24,14 @@
                 productos:{
                     type: Array,
                     value: []
+                },
+                visibleProductos: {
+                    type: Boolean,
+                    computed: '_showProductos(productos, productos.length)'
                 }
+            },
+            _showProductos: function(productos) {
+                return productos.length > 0;
             }
         });
     </script>

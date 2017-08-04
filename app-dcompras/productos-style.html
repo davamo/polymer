@@ -1,10 +1,11 @@
 <dom-module id="productos-style">
     <template>
         <style>
-            .titulo-principal {
+            .header {
                 font-size: var(--productos-header-font-size, var(--default-font-size, 70px));
                 color: var(--productos-header-font-color, var(--default-font-color, black));
                 background-color: var(--productos-background-color, var(--default-background-color, #cee3f8));
+                @apply --productos-header;
             }
             .btn-primary {
                 color: var(--productos-btn-primary-color, var(--default-color, white));
@@ -15,7 +16,7 @@
                 margin-bottom: var(--productos-btn-margin-bottom, var(--default-margin-bottom, 0));
                 font-weight: var(--productos-btn-font-weigh, var(--default-font-weigh, normal));
                 text-align: var(--productos-btn-text-align, var(--default-font-weigh, center));
-                vertical-align: middle;
+                vertical-align: var(--productos-btn-vertical-align, var(--default-vertical-align, middle));
                 touch-action: manipulation;
                 cursor: pointer;
                 background-image: none;
@@ -45,6 +46,23 @@
             .clear {
                 clear: both;
             }
+            .table {
+                border: blanchedalmond 1px solid;
+            }
+            .item-producto {
+                padding: 10px 80px 10px 10px;
+            }   
+            .label {
+                    margin: 1px 0px 5px 0px;
+                    display: -webkit-box;
+            }
+            .productos-listar {
+                display: block;
+            }
+            .stock-productos {
+                display: none;
+            }
+
         </style>
     </template>
     <script> 

@@ -1,0 +1,38 @@
+<link rel="import" href="./informe-productos-fuera-stock.html">
+<link rel="import" href="./productos-style.html">
+
+<dom-module id="listado-productos-stock">
+    <template>
+        <style include='productos-style'></style>
+        <template is='dom-repeat' items="[[stocks]]" as='stock'>
+            <informe-productos-fuera-stock  id='[[stock.id]]' 
+                                            nombre='[[stock.nombre]]' 
+                                            precio='[[stock.precio]]'
+                                            tallas='[[stock.tallas]]'
+                                            stock='[[stock.stock]]'
+                                            ventas='[[stock.ventas]]'></informe-productos-fuera-stock>
+        </template>    
+        <template is='dom-if' if='[[!visibleStock]]'>
+               <h1> No existe reporte de Stock para listar.....</h1> 
+        </template> 
+    </template>
+
+    <script> 
+        Polymer({
+            is: 'listado-productos-stock',
+            properties:{
+                stocks:{
+                    type: Array,
+                    value: []
+                },
+                visibleStock: {
+                    type: Boolean,
+                    computed: '_showStock(stocks, stocks.length)'
+                }
+            },
+            _showStock: function(stocks){
+                return stocks.length>0;
+            }
+        });
+    </script>
+</dom-module>
