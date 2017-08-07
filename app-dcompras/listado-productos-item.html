@@ -7,17 +7,18 @@
                 <i><img src$="[[image]]"></i>
                 id:<i class="item-producto">[[id]]</i>
                 nombre:<i class="item-producto">[[nombre]]</i>
-                talla:<i class="item-producto">[[tallas]]</i>
+                precio:<i class="item-producto">[[precio]]</i>
+                talla:<i class="item-producto">[[_stateTallas(tallas, tallas.length)]]</i>
                 stock:<i class="item-producto">[[stock]]</i>
                 nª ventas:<i class="item-producto">[[ventas]]</i>
                 <i class="item-producto"><button class="btn btn-primary" on-tap='_editProducto'>Editar</button>
-                <i class="item-producto"><button class="btn btn-primary" on-tap='_delProducto'>X</button>
+                <i class="item-producto"><button class="btn btn-primary" on-tap='_deleteProducto'>X</button>
             </p>
     </template>
   <script> 
     Polymer({
         is: 'listado-productos-item',
-        properties:{
+        properties:{           
             id: {
                 type: Number,
                 value: 0
@@ -27,8 +28,8 @@
                 value: ''
             },
             tallas:{
-                type: Number,
-                value: 0
+                type: Array,
+                value: []
             },
             stock:{
                 type: Number,
@@ -46,9 +47,12 @@
         _editProducto: function(){
             this.fire('edit-producto', { id: this.id });
         },
-        _delProducto: function(){
+        _deleteProducto: function(){
             this.fire('delete-producto', { id: this.id });
-        }
+        },
+        _stateTallas: function(tallas) {
+            return tallas.map(array => array.talla).join(", ");
+        },
 });
   </script>
 </dom-module>

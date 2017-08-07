@@ -1,8 +1,8 @@
 {
   "name": "app-dcompras",
   "homepage": "https://github.com/davamo/polymer",
-  "description": "tienda de ropa",
-  "main": "",
+  "description": "Examen tienda Dcompras",
+  "main": "index.html",
   "authors": [
     "davamo"
   ],

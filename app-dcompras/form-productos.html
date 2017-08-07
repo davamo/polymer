@@ -1,13 +1,13 @@
+<link rel="import" href="./checkbox-tallas-productos.html">
+
 <dom-module id="form-productos">
     <template>
-        <style include='productos-style'>
-
-        </style>
+        <style include='productos-style'></style>
         <template is='dom-if' if=[[producto]]>
             <div class='cabecera'>
                 <p> <spam class='label'>Nombre : </spam> <input value='{{producto.nombre::input}}' name='nombre' id='nombre'></input></p>
                 <p> <spam class='label'>Precio : </spam> <input value='{{producto.precio::input}}' type='number' name='precio' id='precio' min='0'></input></p> 
-                <p> <spam class='label'>Tallas : </spam> <input value='{{producto.tallas::input}}' name='tallas' id='tallas'></input></p>
+                <checkbox-tallas-productos  id="tallas" name="tallas" selectcheck="{{producto.tallas}}"  opciones=[[tallasDisponibles]]></checkbox-tallas-productos>
                 <p> <spam class='label'>Stock  : </spam> <input value='{{producto.stock::input}}' type='number' name='stock' id='stock' min='0'></input></p>
                 <p> <spam class='label'>Ventas : </spam> <input value='{{producto.ventas::input}}' type='number' name='ventas' id='ventas' min='0'></input></p>
                 <p><button class="btn btn-primary" on-tap='_saveProducto'>Grabar</button>
@@ -24,9 +24,14 @@
             producto: {
                 type: Object,
                 value: null
+            },
+            tallasDisponibles:{
+                type: Array,
+                value: [{talla:'XS'}, {talla:'S'}, {talla:'M'}, {talla:'L'}, {talla:'XL'}, {talla:'XXL'}]
             }
         },
         _saveProducto: function(){
+            console.log('this.producto ', this.producto);
             this.fire('save-producto-form', { producto: this.producto });
         },
         _cancelproducto: function(){

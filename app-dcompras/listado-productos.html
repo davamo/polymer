@@ -8,6 +8,7 @@
         <template is='dom-repeat' items="[[productos]]" as='producto' id='listado'>
             <listado-productos-item id='[[producto.id]]' 
                                     nombre='[[producto.nombre]]' 
+                                    precio='[[producto.precio]]' 
                                     tallas='[[producto.tallas]]'
                                     stock='[[producto.stock]]'
                                     ventas='[[producto.ventas]]'></listado-productos-item>

@@ -7,10 +7,10 @@
             <p class="table">
                 <i class="item-producto">[[id]]</i>
                 <i class="item-producto">[[nombre]]</i>
-                <i class="item-producto">Tallas : [[tallas]]</i>
+                <i class="item-producto">Tallas : [[_stateTallas(tallas, tallas.length)]]</i>
                 <i class="item-producto">nª vendidos : [[ventas]]</i>
                 <i class="item-producto">total $  : [[total]]</i>
-                <i class="item-producto">--------Sin Existencia/Stock-------</i>
+                <i class="item-producto">SIN STOCK</i>
             </p>
         </template>
     </template>
@@ -31,8 +31,8 @@
                     value: 0
                 },
                 tallas:{
-                    type: String,
-                    value: ''
+                    type: Array,
+                    value: []
                 },
                 stock:{
                     type: Number,
@@ -58,6 +58,9 @@
             },
             _calculateStock: function(stock, ventas) {
                 return (stock-ventas)==0;
+            },
+            _stateTallas: function(tallas) {
+                return tallas.map(array => array.talla).join(", ");
             }
         });
     </script> 

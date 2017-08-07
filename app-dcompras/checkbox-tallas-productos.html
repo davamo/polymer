@@ -1,0 +1,42 @@
+<dom-module id="checkbox-tallas-productos">
+    <template>
+        <style include='productos-style'></style>
+        <spam class='label'>Tallas : </spam> 
+        <template is="dom-repeat" id="opciones" items="[[opciones]]">
+             <input type="checkbox" value='{{item.talla}}' checked="[[_tallaCheked(item, selectcheck)]]" on-tap="_tallaCliked"/> [[item.talla]]
+        </template>  
+    </template>
+    <script>
+        Polymer({
+        is: 'checkbox-tallas-productos',
+        properties:{
+                check:{
+                    type: Array,
+                    value: []
+                },
+                opciones:{
+                    type: Array,
+                    value: []
+                },
+                selectcheck:{
+                    type: Array,
+                    value: []
+                }
+        },
+        _tallaCheked:function(item, selectcheck){
+            return selectcheck.find(selChek => selChek.talla == item.talla);
+        },
+        _tallaCliked: function(e){
+            if (e.target.checked) {
+                this.splice('selectcheck', 0, this.selectcheck.length, ...this.opciones.filter(
+                    option => option.talla == e.target.value || this.selectcheck.find(selChek => selChek.talla == option.talla)
+                ));
+            } else {
+                this.splice('selectcheck', 0, this.selectcheck.length, ...this.opciones.filter(
+                    option => option.talla != e.target.value && this.selectcheck.find(selChek => selChek.talla == option.talla)
+                ));
+            }
+        }
+    });    
+    </script>    
+</dom-module>
