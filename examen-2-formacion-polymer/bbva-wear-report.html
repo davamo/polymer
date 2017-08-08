@@ -1,0 +1,45 @@
+<dom-module id="bbva-wear-report">
+  <template>
+    <style></style>
+
+    <p>
+      Productos fuera de stock:
+    </p>
+
+    <template is="dom-repeat" items=[[products]] filter="_outOfStockProducts">
+      <p>Producto: [[item.nombre]] - Tallas: [[item.tallas]] - Total recaudado: [[_calculateProductTotalAmountSell(item.precio, item.stock)]]</p>
+    </template>
+
+  <template is="dom-if" if=[[!hasProductsOutOfStock]]>
+      There isn't products out of stock right now.
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bbva-wear-report',
+      properties: {
+        products: {
+          type: Array,
+          value: []
+        },
+        hasProductsOutOfStock: {
+          type: Boolean,
+          value: false,
+          computed: '_hasProductsOutOfStock(products, products.length)'
+        }
+      },
+      _outOfStockProducts: function(product) {
+        console.log('bbva-wear-report::_outOfStockProducts', product);
+        return (product.stock - product.ventas <= 0);
+      },
+      _calculateProductTotalAmountSell: function(precio, cantidad) {
+        return precio * cantidad;
+      },
+      _hasProductsOutOfStock: function(products) {
+        console.log('bbva-wear-report::_hasProductsOutOfStock');
+        return this.products.some((product) => (product.stock - product.ventas <= 0));
+      }
+    });
+  </script>
+</dom-module>

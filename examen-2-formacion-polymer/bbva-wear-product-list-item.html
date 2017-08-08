@@ -1,0 +1,40 @@
+<dom-module id="bbva-wear-product-list-item">
+  <template>
+    <style></style>
+
+    <div on-tap="_selectProduct">
+      <p>[[product.nombre]]</p>
+      <p>Precio: [[product.precio]]</p>
+      <p>Tallas: [[product.tallas]]</p>
+      <p>Stock: [[product.stock]]</p>
+      <p>Ventas: [[product.ventas]]</p>
+      <p>[[product.imageUrl]]</p>
+    </div>
+
+    <button on-tap="_deleteProduct">ELIMINAR</button>
+
+    <hr/>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bbva-wear-product-list-item',
+      properties: {
+        product: {
+          type: Object,
+          value: {}
+        }
+      },
+      _selectProduct: function() {
+        this.fire('product-selected', {
+          product: this.product
+        })
+      },
+      _deleteProduct: function() {
+        this.fire('delete-product', {
+          id: this.product.id
+        });
+      }
+    });
+  </script>
+</dom-module>

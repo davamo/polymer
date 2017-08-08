@@ -1,0 +1,39 @@
+<link rel="import" href="./bbva-wear-behaviors.html">
+
+<dom-module id="bbva-wear-dp">
+  <template>
+    <style></style>
+  </template>
+
+  <script>
+    var TALLAS = 'XS, S, M, L, XL';
+
+    Polymer({
+      is: 'bbva-wear-dp',
+      behaviors: [BBVAWearBehaviors.ProductBehavior],
+      loadProducts: function() {
+        var products = [
+          this._createProductItem('Pantalones', 15, TALLAS, 20, 0, ''),
+          this._createProductItem('Camisetas', 20, TALLAS, 100, 100, ''),
+          this._createProductItem('Jerseys', 25, TALLAS, 50, 0, ''),
+          this._createProductItem('Zaptillas', 50, TALLAS, 20, 20, '')
+        ];
+
+        this.fire('products-loaded', {
+          products: products
+        });
+      },
+      _createProductItem(nombre, precio, tallas, stock, ventas, imageUrl) {
+        return {
+          id: this._createRandomId(1, 1000),
+          nombre: nombre,
+          precio: precio,
+          tallas: tallas,
+          stock: stock,
+          ventas: ventas,
+          imageUrl: imageUrl
+        }
+      }
+    });
+  </script>
+</dom-module>

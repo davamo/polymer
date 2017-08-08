@@ -48,7 +48,7 @@
                     this.productos.forEach(function(producto, index) {
                         if (producto.id == productoToProcess.id) {
                             this.set('productos.' + index + '.nombre', productoToProcess.nombre);
-                            this.set('productos.' + index + '.nombre', productoToProcess.precio);
+                            this.set('productos.' + index + '.precio', productoToProcess.precio);
                             this.set('productos.' + index + '.tallas', Object.assign([], productoToProcess.tallas));
                             this.set('productos.' + index + '.stock', productoToProcess.stock);
                             this.set('productos.' + index + '.ventas', productoToProcess.ventas);

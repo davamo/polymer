@@ -1,0 +1,39 @@
+<link rel="import" href="./bbva-wear-product-list-item.html">
+
+<dom-module id="bbva-wear-product-list">
+  <template>
+    <style></style>
+
+    <p>bbva-wear-product-list: [[products.length]]</p>
+
+    <template is="dom-repeat" items=[[products]]>
+        <bbva-wear-product-list-item
+          product=[[item]]>
+        </bbva-wear-product-list-item>
+    </template>
+
+  <template is="dom-if" if=[[emptyProductList]]>
+      There isn't products to display.
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bbva-wear-product-list',
+      properties: {
+        products: {
+          type: Array,
+          value: []
+        },
+        emptyProductList: {
+          type: Boolean,
+          value: false,
+          computed: '_emptyProductList(products, products.length)'
+        }
+      },
+      _emptyProductList: function(products) {
+        return !products || products.length <= 0;
+      }
+    });
+  </script>
+</dom-module>

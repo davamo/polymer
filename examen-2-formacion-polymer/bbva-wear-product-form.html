@@ -1,0 +1,59 @@
+<dom-module id="bbva-wear-product-form">
+  <template>
+    <style></style>
+
+    <template is="dom-if" if="[[product]]">
+      <div>
+        <p>Selected product: [[product.nombre]]
+      </div>
+
+      <div>
+        Nombre:
+        <input type="text" value="{{product.nombre::change}}"></input>
+      </div>
+
+      <div>
+        Precio:
+        <input type="text" value="{{product.precio::change}}"></input>
+      </div>
+
+      <div>
+        Stock:
+        <input type="text" value="{{product.stock::change}}"></input>
+      </div>
+
+      <div>
+        Ventas:
+        <input type="text" value="{{product.ventas::change}}"></input>
+      </div>
+
+      <div>
+        <button id="btnGuardar" on-tap="_saveProduct">Guardar</button>
+        <button id="btnCancelar" on-tap="_cancelProduct">Cancelar</button>
+      </div>
+    </template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bbva-wear-product-form',
+      properties: {
+        product: {
+          type: Object,
+          value: null
+        }
+      },
+      _saveProduct: function() {
+        this.fire('save-product', {
+          product: this.product
+        });
+      },
+      _cancelProduct: function() {
+        this.fire('cancel-product');
+      }
+    });
+  </script>
+</dom-module>
+});
+</script>
+</dom-module>

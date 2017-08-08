@@ -1,0 +1,39 @@
+<link rel="import" href="./bbva-wear-dp.html">
+
+<dom-module id="bbva-wear-dm">
+  <template>
+    <style></style>
+
+    <bbva-wear-dp
+      id="bbvaWearDP">
+    </bbva-wear-dp>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bbva-wear-dm',
+      listeners: {
+        'bbvaWearDP.products-loaded': '_productsLoaded'
+      },
+      loadProducts: function() {
+        this.$.bbvaWearDP.loadProducts();
+      },
+      _productsLoaded: function(event) {
+        var products = event.detail.products;
+        var normalizedProducts = this._normalizeProducts(products);
+
+        console.log('bbva-wear-dm::_productsLoaded()');
+
+        this.fire('products-loaded', {
+          products: normalizedProducts
+        });
+      },
+      _normalizeProducts: function(products) {
+        // HERE WILL BE NORMALIZATION LOGIC FROM RAW DATA TO USEFULL VIEW DATA
+        // AS WE ARE BUILDING OUR OWN DATA, THERE ISN'T NEED FOR THIS.
+        // SO WE RETURN OUR PRODUCTS WITHOUT MODIFICATIONS.
+        return products;
+      }
+    });
+  </script>
+</dom-module>

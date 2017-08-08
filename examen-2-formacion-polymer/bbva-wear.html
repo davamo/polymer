@@ -1,0 +1,113 @@
+<link rel="import" href="./bbva-wear-product-list.html">
+<link rel="import" href="./bbva-wear-product-form.html">
+<link rel="import" href="./bbva-wear-report.html">
+<link rel="import" href="./bbva-wear-dm.html">
+<link rel="import" href="./bbva-wear-behaviors.html">
+
+<dom-module id="bbva-wear">
+  <template>
+    <style></style>
+
+    <bbva-wear-dm
+      id="bbvaWearDM">
+    </bbva-wear-dm>
+
+    <p>
+      <button on-tap="_newProduct">NUEVO PRODUCTO</button>
+    </p>
+
+    <bbva-wear-product-list
+      id="bbvaWearProductList"
+      products=[[products]]>
+    </bbva-wear-product-list>
+
+    <bbva-wear-product-form
+      id="bbvaWearProductForm"
+      product=[[product]]>
+    </bbva-wear-product-form>
+
+    <bbva-wear-report
+      products=[[products]]>
+    </bbva-wear-report>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'bbva-wear',
+      properties: {
+        products: {
+          type: Array,
+          value: []
+        },
+        product: {
+          type: Object,
+          value: null
+        }
+      },
+      behaviors: [
+        BBVAWearBehaviors.ProductBehavior
+      ],
+      listeners: {
+        'bbvaWearDM.products-loaded': '_productsLoaded',
+        'bbvaWearProductList.product-selected': '_setSelectedProduct',
+        'bbvaWearProductList.delete-product': '_deleteProduct',
+        'bbvaWearProductForm.save-product': '_saveProduct',
+        'bbvaWearProductForm.cancel-product': '_unselectProduct'
+      },
+      attached: function() {
+        this.$.bbvaWearDM.loadProducts();
+      },
+      _productsLoaded: function(event) {
+        var products = event.detail.products;
+
+        this.set('products', products);
+      },
+      _newProduct: function() {
+        this.set('product', {});
+      },
+      _setSelectedProduct: function(event) {
+        var selectedProduct = event.detail.product;
+
+        this.set('product', selectedProduct);
+      },
+      _deleteProduct: function(event) {
+        var productId = event.detail.id;
+        var index = this._getIndexFromProduct(this.products, productId);
+
+        this.splice('products', index, 1);
+      },
+      _saveProduct: function(event) {
+        var product = event.detail.product;
+
+        if (product.id) {
+          var index = this._getIndexFromProduct(this.products, product.id);
+
+          // OPCIÓN 1.
+          // ACTUALIZAMOS LA REFERENCIA DEL OBJETO EN EL ARRAY, CREANDO UNA NUEVA INSTANCIA DEL OBJETO Y CLONANDO LAS PROPIEDADES EXISTENTES.
+          // ACTUALIZAMOS LA PROPIEDAD QUE ALMACENA EL ARRAY, CREANDO UNA NUEVA INSTANCIA DEL ARRAY Y CLONANDO LOS ELEMENTOS EXISTENTES.
+          // ESTO PROVOCARÁ UNA RECOMPUTACIÓN DE LAS PROPIEDADES COMPUTADAS.
+          var products = this.products;
+          products[index] = Object.assign({}, product);
+          this.set('products', Object.assign([], products));
+
+          // OPCIÓN 2.
+          // ACTUALIZAMOS LA REFERENCIA DEL OBJETO EN EL ARRAY.
+          // ESTO NO PROVOCARÁ UNA RECOMPUTACIÓN DE LAS PROPIEDADES COMPUTADAS.
+          //this.set('products.' + index, Object.assign({}, product));
+        } else {
+          product.id = this._createRandomId(1, 1000);
+
+          this.push('products', product);
+        }
+
+        this.set('product', null);
+      },
+      _getIndexFromProduct: function(productList, productId) {
+        return productList.findIndex((product) => product.id == productId);
+      },
+      _unselectProduct: function() {
+        this.set('product', null);
+      }
+    });
+  </script>
+</dom-module>
